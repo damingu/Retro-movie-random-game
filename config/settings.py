@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'accounts',
     'game',
     'articles',
-    'movies',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
