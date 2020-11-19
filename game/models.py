@@ -1,17 +1,17 @@
 from django.db import models
 
+
 # Create your models here.
-class Movie(models.Model):
-    movieId = models.IntegerField()
-    title = models.TextField()
-    overview = models.TextField()
-    rating = models.FloatField()
-    poster_path=models.TextField()
-
 class Genre(models.Model):
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    name = models.TextField()
+    name = models.CharField(max_length=50)
 
-class Actor(models.Model):
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    name = models.TextField()
+
+class Movie(models.Model):
+    title = models.CharField(max_length=100)
+    release_date = models.DateField(null=True)
+    popularity = models.FloatField(null=True)
+    revenue = models.IntegerField(null=True)
+    vote_average = models.FloatField(null=True)
+    overview = models.TextField(null=True)
+    poster_path = models.CharField(null=True,max_length=500)
+    genres = models.ManyToManyField(Genre)
