@@ -6,4 +6,7 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm) : 
 
         model = get_user_model()
-        fields = UserCreationForm.Meta.fields 
+        fields = UserCreationForm.Meta.fields
+    
+    # game 'youtube' 빼고...? =>
+    # article+장바구니 // accounts 기능구현!
