@@ -116,7 +116,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+DATETIME_FORMAT = 'Y-m-d H:i:s'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
@@ -124,4 +124,3 @@ STATIC_URL = '/static/'
 
 # Custom User Model
 AUTH_USER_MODEL= 'accounts.User'
-

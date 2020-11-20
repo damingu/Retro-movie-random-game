@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>업데이트완료!</h1>
+{% for movie in movies %}
+<p>{{movie.title}}</p>
+{% endfor %}
+{% endblock content %}

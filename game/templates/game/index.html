@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>hi</h1>
+<form action="{% url 'game:update_movie' %}">
+  <button>업데이트!</button>
+</form>
+{% endblock content %}
