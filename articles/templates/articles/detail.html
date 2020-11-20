@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div>
+  <div class="row justify-content-between">
+    <span>
+      {{article.title}}
+    </span>
+    <span>
+      {{article.created_at}}
+    </span>
+  </div>
+  <div>
+    {{article.movie.title}}
+  </div>
+  <div>
+    {{article.content}}
+  </div>
+  <div>
+    {{article.rating}}
+  </div>
+</div>
+<h4>댓글 목록</h4>
+{% if comments|length %}
+  <p><b>{{ comments|length }}개의 댓글이 있습니다.</b></p>
+{% endif %}
+{% for comment in comments %}
+  <div>
+    {{ comment.user }} - {{ comment.content }}
+  </div>
+{% empty %}
+  <p><b>댓글이 없어요..</b></p>
+{% endfor %}
+<hr>
+{% if request.user.is_authenticated %}
+  <form action="{% url 'articles:create_comment' article.pk %}" method="POST">
+    {% csrf_token %}
+    {{ comment_form }}
+    <input type="submit">
+  </form>
+{% else %}
+<a href="{% url 'accounts:login' %}">[댓글을 작성하려면 로그인하세요.]</a>
+{% endif %}
+<a href="{% url 'articles:index' %}">[back]</a>
+{% endblock content %}
