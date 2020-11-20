@@ -27,6 +27,7 @@ def signup(request):
     }
     return render(request, 'accounts/signup.html', context)
 
+
 @ require_http_methods(['GET', 'POST'])
 def login(request):
     if request.method == 'POST' :
