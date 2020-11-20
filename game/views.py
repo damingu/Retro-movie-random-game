@@ -6,6 +6,12 @@ def index(request):
     return render(request,'game/index.html')
 
 
+def my_movie_list(request):
+    context={
+        'movies':Movie.objects.all()
+    }
+    return render(request,'game/my_movie_list.html',context)
+
 def update_movie(request):
 
     import requests
@@ -13,7 +19,7 @@ def update_movie(request):
 
     # movie_list : 네이버 평점 순 500개 영화 제목 저장할 리스트!
     movie_list=[]
-    number=11
+    number=2
     for i in range(1,number):
         URL = 'https://movie.naver.com/movie/sdb/rank/rmovie.nhn?sel=pnt&date=20201118&page='
 

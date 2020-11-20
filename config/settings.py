@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'accounts',
     'game',
     'articles',
+    'bootstrap4',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -123,4 +124,4 @@ DATETIME_FORMAT = 'Y-m-d H:i:s'
 STATIC_URL = '/static/'
 
 # Custom User Model
-AUTH_USER_MODEL= 'accounts.User'
+AUTH_USER_MODEL='accounts.User'

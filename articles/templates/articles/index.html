@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>article index</h1>
+<hr>
+<!-- 글 목록 나열-->
+<section>
+  {% for article in articles %}
+  <a href="{% url 'articles:detail' article.pk %}">{{article.title}}</a>
+  <br>
+  {% endfor %}
+</section>
+<!-- 페이지네이션 있으면 좋을듯?-->
+{% endblock content %}
