@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import get_user_model
 from django import forms
 
@@ -42,3 +42,26 @@ class CustomUserCreationForm(UserCreationForm):
         model = get_user_model()
         fields = UserCreationForm.Meta.fields 
         
+
+class CustomAuthenticationForm(AuthenticationForm):
+    username = forms.CharField(
+        label = '',
+        widget = forms.TextInput(attrs={
+            'class': 'form-control', 
+            'placeholder': 'username',
+        }),
+        error_messages = {
+            'required': '올바른 username을 입력하세요.'
+        }
+    )
+
+    password = forms.CharField( # models.py의 type
+        label = '',
+        widget = forms.PasswordInput(attrs={ # Input type 
+            'class': 'form-control',
+            'placeholder': 'password',
+        }),
+        error_messages= {
+            'required': '올바른 password를 입력하세요.'
+        }
+    )
