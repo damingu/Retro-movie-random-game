@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>📚찜한 목록</h1>
+{% for movie in movies %}
+<div>
+  <a href="{%url 'articles:create' movie.id %}">{{movie.title}}</a>
+</div>
+{% endfor %}
+{% endblock content %}
