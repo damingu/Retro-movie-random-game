@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% load socialaccount %}
+{% comment %} {% providers_media_js %} {% endcomment %}
+
 {% block title %}
 login
 {% endblock %}
@@ -9,6 +12,11 @@ login
   {% csrf_token %}
   {{ form.as_p }}
   <button>로그인</button>
-</form>
+  <hr>
+  <a href="/accounts/login/">장고 제공 로그인</a>
+ 
+<a href="{% provider_login_url 'google'%}" >구글 로그인</a><br>
+<a href="{% provider_login_url 'naver' %}" >네이버 로그인</a><br>
+
 {% endblock %}
 

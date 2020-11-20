@@ -34,13 +34,27 @@ INSTALLED_APPS = [
     'accounts',
     'game',
     'articles',
+
+    # 웹 크롤링 
     'bootstrap4',
+    # 소셜 로그인 
+    'django.contrib.sites',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    #provider : 소셜로그인 제공업체
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.naver',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +139,15 @@ STATIC_URL = '/static/'
 
 # Custom User Model
 AUTH_USER_MODEL= 'accounts.User'
+
+# social login 
+AUTHENTICATION_BACKENDS = (
+    #Needed to login by username in Django admin, regardless of 'allauth'
+    'django.contrib.auth.backends.ModelBackend',
+    
+    # 'allauth' specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'

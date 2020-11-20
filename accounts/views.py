@@ -4,7 +4,7 @@ from django.views.decorators.http import require_http_methods,require_POST
 # from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login 
 from django.contrib.auth import logout as auth_logout 
-
+from django.contrib.auth.decorators import login_required
 
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
 
@@ -43,7 +43,7 @@ def login(request):
     return render(request, 'accounts/login.html', context)
 
 
-@require_POST
+@login_required
 def logout(request):
     auth_logout(request)
-    # return redirect('game:home') 게임 홈페이지로 이동 
+    return redirect('game:index') #게임 홈페이지로 이동 
