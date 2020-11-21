@@ -1,9 +1,32 @@
 from django.shortcuts import render
 from .models import Movie,Genre
+import random
+
+import requests
+from bs4 import BeautifulSoup
+
 
 # Create your views here.
 def index(request):
-    return render(request,'game/index.html')
+    movies = Movie.objects.all()
+    random_movie = random.choice(list(movies))
+    URL = 'https://www.googleapis.com/youtube/v3/search'
+    API_KEY='AIzaSyCdneHhIhINFW9826nIXk0OJVtSnCq_aI8'
+    params= {
+          'part': 'snippet',
+          'key': API_KEY,
+          'q': random_movie.title +' 예고편',
+        }
+    res = requests.get(URL, params=params)
+    youtube_result=res.json()
+    youtube_id = youtube_result['items'][0].get('id')['videoId']
+    youtube = 'https://www.youtube.com/embed/'+str(youtube_id)
+    context={
+        'random_movie':random_movie,
+        'youtube':youtube,
+    }
+    
+    return render(request,'game/index.html',context)
 
 
 def my_movie_list(request):
@@ -13,9 +36,6 @@ def my_movie_list(request):
     return render(request,'game/my_movie_list.html',context)
 
 def update_movie(request):
-
-    import requests
-    from bs4 import BeautifulSoup
 
     # movie_list : 네이버 평점 순 500개 영화 제목 저장할 리스트!
     movie_list=[]
