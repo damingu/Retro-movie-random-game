@@ -18,7 +18,7 @@ def signup(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid() : # 유효성 검사 
             user = form.save()
-            auth_login(request, user)
+            auth_login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('accounts:login')
     else : 
         form = CustomUserCreationForm()
@@ -33,7 +33,7 @@ def login(request):
     if request.method == 'POST' :
         form = CustomAuthenticationForm(request, request.POST)
         if form.is_valid():
-            auth_login(request, form.get_user())
+            auth_login(request, form.get_user(), backend='django.contrib.auth.backends.ModelBackend')
             return redirect('game:index') #게임 실행 페이지로 이동 
     else : 
         form = CustomAuthenticationForm()
