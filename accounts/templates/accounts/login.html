@@ -1,13 +1,26 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load socialaccount %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'stylesheets/style.css' %}">
+{% endblock %}
+
 {% block title %}
 login
 {% endblock %}
 
 {% block content %}
-<h1>로그인 페이지입니다.</h1>
+<h1 class="test">로그인 페이지입니다.</h1>
 <form action="" method="POST">
   {% csrf_token %}
   {{ form.as_p }}
   <button>로그인</button>
-</form>
+  <hr>
+  <a href="/accounts/login/">장고 제공 로그인</a>
+ 
+<a href="{% provider_login_url 'google'%}" >구글 로그인</a><br>
+<a href="{% provider_login_url 'naver' %}" >네이버 로그인</a><br>
+
 {% endblock %}
+
