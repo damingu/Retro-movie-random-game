@@ -2,57 +2,13 @@
 
 {% block content %}
 <h1>hi</h1>
-<form action="{% url 'game:update_movie' %}">
-  <button>업데이트!</button>
-</form>
 
-<!--무비 모달 띄어주기!!-->
+
 <div>
-  <!-- Button trigger modal -->
-  <div>
-    <a href="" data-toggle="modal" data-target="#staticBackdrop">
-      {{ random_movie.title }}
-    </a>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-          {% comment %} <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button> {% endcomment %}
-        </div>
-        <div class="modal-body">
-          <iframe width="560" height="315" src ="{{youtube}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modalCloseBtn">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<a href="{% url 'game:movie_detail' random_movie.pk%}">{{random_movie.title}}</a>
 </div>
+
 {% endblock content %}
-{% block script %}
-<script>
-  const player = document.querySelector('#player')
-  console.log(player)
-  const modalCloseBtn = document.querySelector('#modalCloseBtn')
-  console.log(modalCloseBtn)
-  modalCloseBtn.addEventListener ('click', function (e) {
-    e.preventDefault()
-    console.log(e)
-
-    const youtubePlayer = document.querySelector('#movie_player')
-    youtubePlayer.classList.remove(['playing-mode'])
-    youtubePlayer.classList.add(['paused-mode'])
-
-  })
-</script>
-{% endblock script %}
 
 <!--
 html5-video-player ytp-exp-bottom-control-flexbox ytp-exp-bigger-button ytp-title-enable-channel-logo ytp-embed ytp-embed-playlist paused-mode

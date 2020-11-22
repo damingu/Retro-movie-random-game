@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% load static %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'stylesheets/moviedetail.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1 class="test">테스트</h1>
+<div class="row mt-3">
+  <div class="col-7">
+    <iframe src="{{youtube}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="height: 315px; width:100%;%"></iframe>
+  </div>
+  <div class="col">
+    <div>
+      {{movie.title}}
+    </div>
+    <br>
+    <div>
+      {{movie.overview}}
+    </div>
+  </div>
+</div>
+<!-- 좋아요 -->
+<div>
+  <div>
+    <form action="{% url 'game:like' movie.pk %}"method="POST" id="form_like" data-movieId="{{movie.pk}}" class="d-inline">
+      {% csrf_token %}
+      {% if user in movie.like_user.all %}
+        <button class="btn btn-link" style="box-shadow: none !important;">
+          <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-cart-check-fill cart-{{movie.pk}}"  style="color:#f5a302;" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM4 14a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm7 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm.354-7.646a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+          </svg>
+        </button>
+      {% else %}
+        <button class="btn btn-link" style="box-shadow: none !important;">
+          <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-cart-check-fill cart-{{movie.pk}}"  style="color:black;" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM4 14a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm7 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm.354-7.646a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+          </svg>
+        </button>
+      {% endif %}
+    </form>
+    <span id="likeCount-{{movie.pk}}" class="d-inline">{{ movie.like_user.all|length }}</span> 명이 찜했습니다.
+  </div>
+</div>
+<!-- 댓글  -->
+<div>
+  <h4>댓글 목록</h4>
+  {% if comments|length %}
+    <p><b>{{ comments|length }}개의 댓글이 있습니다.</b></p>
+  {% endif %}
+  {% for comment in comments %}
+    <div>
+      {{ comment.user }} - {{ comment.content }}
+    </div>
+  {% empty %}
+    <p><b>댓글이 없어요..</b></p>
+  {% endfor %}
+  <hr>
+  <form action="{% url 'game:create_comment' movie.pk %}" method="POST">
+    {% csrf_token %}
+    {{ comment_form }}
+    <input type="submit">
+  </form>
+</div>
+{% endblock content %}
+
+{% block script %}
+<script>
+
+  const likeBtnForm = document.querySelector('#form_like')
+  const movieId =likeBtnForm.dataset.movieid
+  console.log(likeBtnForm.dataset)
+  console.log(movieId)
+  likeBtnForm.addEventListener('click',function (e) {
+    e.preventDefault() 
+    
+    const API_URL = `/${movieId}/like/`
+    const csrfToken = document.querySelector('input[name=csrfmiddlewaretoken]').value
+    const options = {headers: {'X-CSRFToken': csrfToken}}
+
+    axios.post(API_URL,{},options)
+      .then(res => {
+        
+        const { is_like,like_count } =res.data 
+        const likecart = document.querySelector(`.cart-${movieId}`)
+        likecart.style.color= is_like ? '#f5a302' : 'black'
+
+        const likeCount = document.querySelector(`#likeCount-${movieId}`)
+        likeCount.innerText = `${like_count}`
+        
+      })
+      .catch(res => {
+        console.log(res.data)
+      })
+  })
+</script>
+{% endblock script %}

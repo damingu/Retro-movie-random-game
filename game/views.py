@@ -1,39 +1,106 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Movie,Genre
-import random
+from .forms import CommentForm
 
+import random
 import requests
 from bs4 import BeautifulSoup
 
+from django.http import JsonResponse
 
 # Create your views here.
+def gameadmin(request):
+    return render(request,'game/gameadmin.html')
+
 def index(request):
     movies = Movie.objects.all()
     random_movie = random.choice(list(movies))
+    context={
+        'random_movie':random_movie,
+    }
+    return render(request,'game/index.html',context)
+
+
+# 예고편 보러가기
+def movie_detail(request,movie_pk):
+    movie = get_object_or_404(Movie,pk=movie_pk)
+    
+    # 예고편 가져오기
     URL = 'https://www.googleapis.com/youtube/v3/search'
-    API_KEY='AIzaSyCdneHhIhINFW9826nIXk0OJVtSnCq_aI8'
+    # API_KEY='AIzaSyCdneHhIhINFW9826nIXk0OJVtSnCq_aI8'
+    API_KEY='AIzaSyClauhHokVFylfo5bKnc80LTnNuurpC1O8'
     params= {
           'part': 'snippet',
           'key': API_KEY,
-          'q': random_movie.title +' 예고편',
+          'q': movie.title +' 예고편',
         }
     res = requests.get(URL, params=params)
     youtube_result=res.json()
     youtube_id = youtube_result['items'][0].get('id')['videoId']
-    youtube = 'https://www.youtube.com/embed/'+str(youtube_id)
-    context={
-        'random_movie':random_movie,
-        'youtube':youtube,
-    }
+    youtube = 'https://www.youtube.com/embed/'+str(youtube_id)+'?autoplay=1'
     
-    return render(request,'game/index.html',context)
+    # 댓글 가져오기
+    comments = movie.moviecomment_set.all()
+    comment_form = CommentForm()
+    context = {
+        'youtube':youtube,
+        'movie':movie,
+        'comment_form': comment_form,
+        'comments': comments,
+    }
+    return render(request,'game/movie_detail.html',context)
 
 
+# # 영화 찜하기
+def like(request, movie_pk):
+    if request.user.is_authenticated:
+        movie = get_object_or_404(Movie,pk=movie_pk)
+        user = request.user
+
+        if movie.like_user.filter(pk=user.pk).exists():
+
+            movie.like_user.remove(user)
+            is_like = False
+        else:
+            movie.like_user.add(user)
+            is_like = True
+
+        data = {
+            'is_like':is_like,
+            'like_count': movie.like_user.count(),
+        }  
+        return JsonResponse(data)
+    return redirect('accounts:login')
+
+
+# 영화 댓글 쓰기
+def create_comment(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    comment_form = CommentForm(request.POST)
+    if comment_form.is_valid():
+        comment = comment_form.save(commit=False)
+        comment.movie = movie
+        comment.user = request.user
+        comment.save()
+        return redirect('game:movie_detail', movie.pk)
+    context = {
+        'comment_form': comment_form,
+        'review': movie,
+        'comments': movie.moviecomment_set.all(),
+    }
+    return render(request, 'game/movie_detail.html', context)
+
+
+# 찜한 목록!!
 def my_movie_list(request):
+    user = request.user
+    movies=user.like_movies.all()
+    print(movies)
     context={
-        'movies':Movie.objects.all()
+        'movies':movies
     }
     return render(request,'game/my_movie_list.html',context)
+
 
 def update_movie(request):
 
