@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'stylesheets/roulette.css' %}">
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css">
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css">
+{% endblock %}
+
+{% block title %}
+  Play game
+{% endblock %}
+
+{% block content %}
+<h1> main 게임 페이지입니다.</h1>
+{% for movie in movies%}
+{{ movie.title}}
+<br>
+{% endfor %}
+
+<div class="row">
+  <div class="span12">
+    <div class="roulette_container" >
+      <div class="roulette" style="display:none;">
+        <!-- 원하는 포스터 가져오기 -->
+        {% for movie in movies%}
+        <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}">
+        {% endfor %}
+      </div>
+    </div>
+    <div class="btn_container">
+      <p>
+      <button class="btn btn-large btn-primary start"> START </button>
+      <button class="stop btn-large btn btn-warning"> STOP </button>
+      </p>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+	
+{% block script %}
+  <script src="{% static 'stylesheets/roulette.js' %}"></script>
+  <script src="{% static 'stylesheets/randomRoulette.js' %}"></script>
+  
+{% endblock%}

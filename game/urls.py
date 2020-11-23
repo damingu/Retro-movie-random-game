@@ -17,4 +17,7 @@ urlpatterns = [
 
     path('movie_update/',views.update_movie,name="update_movie"),
     path('my_movie_list/',views.my_movie_list,name="my_movie_list"),
+
+    # 메인 게임 
+    path('play_game/', views.play_game, name="play_game"),
 ]
