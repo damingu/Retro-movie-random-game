@@ -2,7 +2,17 @@
 
 {% block content %}
 <h1>hi</h1>
-<form action="{% url 'game:update_movie' %}">
-  <button>업데이트!</button>
-</form>
+
+
+<div>
+<a href="{% url 'game:movie_detail' random_movie.pk%}">{{random_movie.title}}</a>
+</div>
+
 {% endblock content %}
+
+<!--
+html5-video-player ytp-exp-bottom-control-flexbox ytp-exp-bigger-button ytp-title-enable-channel-logo ytp-embed ytp-embed-playlist paused-mode
+html5-video-player ytp-exp-bottom-control-flexbox ytp-exp-bigger-button ytp-title-enable-channel-logo ytp-embed ytp-embed-playlist ytp-autohide playing-mode
+
+<iframe width="560" height="315" src ="{{youtube}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+-->
