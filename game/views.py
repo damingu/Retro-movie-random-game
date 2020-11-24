@@ -29,7 +29,7 @@ def index(request):
 total = [] 
 # 게임 페이지로 넘어가는 함수 
 def play_game(request):
-    # total = []
+    # 여기서 DB지우면?
     num = [i for i in range(1,48)]
     # 중복없이 10개 뽑기
     randomNum = random.sample(num, 10)
