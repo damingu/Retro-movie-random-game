@@ -13,32 +13,20 @@
 
 {% block content %}
 
-{% for movie in movies %}
-{{ movie.title }}
-<br>
-{% endfor %}
-
-<h1> main 게임 페이지입니다.</h1>
-{% csrf_token %}
-<div class="row">
-  <div class="span12">
-    <div class="roulette_container" >
-      <div class="roulette" style="display:none;">
-        <!-- 원하는 포스터 가져오기 -->
-        {% for movie in movies %}
-        <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}">
-        {% endfor %}
-      </div>
-    </div>
-    <div class="btn_container">
-      <p>
-      <button class="btn btn-large btn-primary start"> START </button>
-      <button class="stop btn-large btn btn-warning" @click="test"> STOP </button>
-      </p>
-    </div>
+<h1> 🎮 PLAY THE GAME </h1>
+<div class="roulette_container" >
+  <div class="roulette" style="display:none;">
+    <!-- 원하는 포스터 가져오기 -->
+    {% for movie in movies %}
+    <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" width=350 height=500>
+    {% endfor %}
   </div>
+  <div class="btn_container">
+    <p>
+    <button class="btn btn-large btn-primary start"> START </button>
+    <button class="stop btn-large btn btn-warning" @click="test"> STOP </button>
+    </p>
 </div>
-
 
 {% endblock %}
 	

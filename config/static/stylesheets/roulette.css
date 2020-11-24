@@ -1,30 +1,26 @@
-.test {
+h1 {
 	color: white ;
 }
 body {	
 	padding-top: 60px;
 	padding-bottom: 40px;
 }
-div.roulette {
-	margin-top: 35px;
-	height: 800px
-}
-div.roulette-inner {
-	/* left : 33px; */
-}
 
-div.roulette_container {
-	background-color:rgb(253, 252, 253);
-	width:500px;
-	/* 포스터 크기 적용 */
-	height:800px;
-	border:1px solid rgba(253, 252, 253, 0.31);
-	box-shadow:0px 0px 3px rgb(0, 0, 0);margin:auto;
+.roulette{
+	box-shadow: 0 0 0 0.5rem #f5a302;
+	width: 350px;
+	display: inline-block;
+	text-align: center;
+}
+.roulette_container {
+	text-align:center;
+	padding: 80px;
 }
 
 .btn_container {
 	margin:20px;
 	text-align:center;
+  padding: 50px;
 }
 .btn_container .start {
 	margin-right:20px;
