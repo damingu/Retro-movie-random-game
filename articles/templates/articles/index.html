@@ -1,14 +1,97 @@
 {% extends 'base.html' %}
-
+{% load static %}
+  {% block css %}
+  <link rel="stylesheet" href="{% static 'stylesheets/style.css' %}">
+  {% endblock %}
 {% block content %}
-<h1>article index</h1>
-<hr>
 <!-- 글 목록 나열-->
-<section>
-  {% for article in articles %}
+<section >
+  <h1 style="color:#f5a425;">커뮤니티</h1>
+  <section class="pt-5 pb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <h3 class="mb-3" style="color:#f5a425;"> 인기글 </h3>
+        </div>
+        <div class="col-6 text-right">
+          <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+            <i class="fa fa-arrow-left"></i>
+          </a>
+          <a class="btn btn-primary mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
+            <i class="fa fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="col-12">
+          <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row">
+                  {% for article in articles1 %}
+                  <div class="col-md-4 mb-3">
+                    <div class="card">
+                      
+                      <img class="img-fluid m-auto" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{article.movie.poster_path}}">
+
+                      <div class="card-body">
+                        <h4 class="card-title">{{article.title}}</h4>
+                        <p class="card-text">{{article.content}}</p>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            <div class="carousel-item">
+                <div class="row">
+                  {% for article in articles2 %}
+                  <div class="col-md-4 mb-3">
+                    <div class="card">
+                      <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{article.movie.poster_path}}">
+                      <div class="card-body">
+                        <h4 class="card-title">{{article.title}}</h4>
+                        <p class="card-text">{{article.content}}</p>
+
+                      </div>
+
+                    </div>
+                  </div>
+                  {% endfor %}
+                  {% comment %} <div class="col-md-4 mb-3">
+                    <div class="card">
+                      <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532715088550-62f09305f765?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=ebadb044b374504ef8e81bdec4d0e840">
+                      <div class="card-body">
+                        <h4 class="card-title">Special title treatment</h4>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card">
+                      <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=0754ab085804ae8a3b562548e6b4aa2e">
+                      <div class="card-body">
+                        <h4 class="card-title">Special title treatment</h4>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                      </div>
+                    </div>
+                  </div> {% endcomment %}
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+  {% comment %} {% for article in articles %}
   <a href="{% url 'articles:detail' article.pk %}">{{article.title}}</a>
   <br>
   {% endfor %}
-</section>
+</section> {% endcomment %}
 <!-- 페이지네이션 있으면 좋을듯?-->
 {% endblock content %}
+{% block script %}
+
+
+{% endblock script %}

@@ -6,12 +6,16 @@ from game import models as game_models
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods,require_POST,require_GET
 
-
+from django.db.models import Q
 # Create your views here.
 def index(request):
-    articles = Article.objects.all().order_by('-pk')
+    articles = Article.objects.filter(rating__gte=5)
+    poster_path =[]
+    for article in articles:
+        print(article.movie.poster_path)
     context = {
-        'articles':articles,
+        'articles1':articles[:3],
+        'articles2':articles[3:],
     }
     
     return render(request,'articles/index.html',context)

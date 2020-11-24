@@ -11,34 +11,29 @@ signup
 {% endblock %}
 
 {% block content %}
-{% comment %} <h1>회원가입</h1>
-<form action="" method="POST">
-  {% csrf_token %}
-  {% for field in form %}
-    {% if field.errors %}
-      {% for error in field.errors %}
-        <div class="alert alert-warning" role="alert"> {{ error |escape }}</div>
-      {% endfor %}
-    {% endif %}
-    {% bootstrap_field field show_label=false %}
-  {% endfor %}
-  <button>회원가입</button>
-
-</form> {% endcomment %}
-
-{% comment %} test코드 {% endcomment %}
-<form class="login-form">
-  <p class="login-text">
-    <span class="fa-stack fa-lg">
-      <i class="fa fa-circle fa-stack-2x"></i>
-      <i class="fa fa-lock fa-stack-1x"></i>
-    </span>
-  </p>
-  <input type="email" class="login-username" autofocus="true" required="true" placeholder="Email" />
-  <input type="password" class="login-password" required="true" placeholder="Password" />
-  <input type="submit" name="Login" value="Login" class="login-submit" />
-</form>
-<a href="#" class="login-forgot-pass">forgot password?</a>
+<div style="margin-top:250px;">
+  <form method="POST" action="" class="login-form">
+    <p class="login-text">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-lock fa-stack-1x"></i>
+      </span>
+    </p>
+    {%csrf_token%}
+    {% for field in form %}
+      {% if field.errors %}
+        {% for error in field.errors %}
+          <div class="alert alert-warning" role="alert"> {{ error |escape }}</div>
+        {% endfor %}
+      {% endif %}
+        <div class="form-group">
+          {{ field.label }}
+          {{field}}
+        </div>
+    {% endfor %}
+    <button type="submit" class="login-submit">Submit</button>
+  </form>
+</div>
 <div class="underlay-photo"></div>
-<div class="underlay-black"></div> 
+<div class="underlay-black"></div>
 {% endblock %}

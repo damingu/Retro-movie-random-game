@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>hi</h1>
+
 
 
 <div>
-<a href="{% url 'game:movie_detail' random_movie.pk%}">{{random_movie.title}}</a>
+<a href="{% url 'game:movie_detail' random_movie.pk%}" style="color:#f5a425;">{{random_movie.title}}</a>
 </div>
 
 {% endblock content %}
