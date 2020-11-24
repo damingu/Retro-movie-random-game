@@ -10,8 +10,8 @@ from bs4 import BeautifulSoup
 from django.http import JsonResponse
 
 # 게임
-from random import randint
- 
+import random 
+
 
 # Create your views here.
 def gameadmin(request):
@@ -25,11 +25,30 @@ def index(request):
     }
     return render(request,'game/index.html',context)
 
+# 이렇게 선언 했는데 
+total = [] 
+# 게임 페이지로 넘어가는 함수 
+def play_game(request):
+    # total = []
+    num = [i for i in range(1,48)]
+    # 중복없이 10개 뽑기
+    randomNum = random.sample(num, 10)
+    # print(randomNum)
+    for i in randomNum :
+        getMovie = Movie.objects.get(id=i)
+        total.append(getMovie)
+    context = {
+        'movies': total,
+    }
+    return render(request, 'game/play_game.html', context)
 
+print(total) # 여기서 빈값으로 넘어옴 ..삽질 오조오억번 
 # 예고편 보러가기
 def movie_detail(request,movie_pk):
+    # 넘어온 movie_pk가 위에 total의 인덱스로 사용되서 value값을 끄집어내여함 
+    # 근데 total 부분이 저장이 안돼!!왜!!
+    print(movie_pk)
     movie = get_object_or_404(Movie,pk=movie_pk)
-    
     # 예고편 가져오기
     URL = 'https://www.googleapis.com/youtube/v3/search'
     # API_KEY='AIzaSyCdneHhIhINFW9826nIXk0OJVtSnCq_aI8'
@@ -178,19 +197,6 @@ def update_movie(request):
     return render(request,'game/update_movie.html',context)
 
 
-# 게임 페이지로 넘어가는 함수 
-def play_game(request):
-    total = [] 
-    cnt = 0 
-    while cnt < 11 : # 10개의 객체를 랜덤으로 뽑음 
-        cnt += 1 
-        num = randint(1, 48)
-        getMovie = Movie.objects.get(id=num)
-        total.append(getMovie)
-    context = {
-        'movies': total,
-    }
-    return render(request, 'game/play_game.html', context)
 
 
 

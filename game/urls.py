@@ -20,4 +20,5 @@ urlpatterns = [
 
     # 메인 게임 
     path('play_game/', views.play_game, name="play_game"),
+    
 ]

@@ -1,4 +1,6 @@
-
+.test {
+	color: white ;
+}
 body {	
 	padding-top: 60px;
 	padding-bottom: 40px;
@@ -36,21 +38,12 @@ div.roulette_container {
 	padding-left:5px;
 	font-size: 20px;
 }
-#msg {
-	border:1px solid #eee;
-	padding:10px 20px;
-	overflow-y: scroll;
-	max-height: 100px; 
-}
+
+
 div.param_label {
 	margin:20px 0px 10px 0px;
 }
-#stopImageNumber {
-	width : 20px;
-}
-.param_name {
-	font-weight:bold;
-}
+
 .image_sample img{
 	width : 50px;
 	cursor: pointer;
