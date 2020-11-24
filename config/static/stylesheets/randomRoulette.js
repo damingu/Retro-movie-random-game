@@ -34,10 +34,22 @@ $(function(){
 	$('.stop').click(function(){
 		// 무작위 범위 == 사진 갯수
 		var RandomInt = getRandomInt(1, 10)
-		console.log(RandomInt)
-		var updateParamater = function(){
+    console.log(RandomInt)
+    $('.test').text(RandomInt)
+    // 예고편 보러가기 함수로 바로 보내주기
+    const MOVIE_URL = `/${RandomInt}/`
+    const csrfToken = document.querySelector('input[name=csrfmiddlewaretoken]').value
+    const options = {headers: {'X-CSRFToken': csrfToken}} 
+    axios.post(MOVIE_URL, {}, options)
+      .then(res =>{
+        // console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    
+    var updateParamater = function(){
       p['stopImageNumber'] = RandomInt
-      console.log(typeof(RandomInt))
 			rouletter.roulette('option', p);	
 		} 
 		updateParamater();

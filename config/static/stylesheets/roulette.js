@@ -162,7 +162,7 @@
 		var option = function(options) {
 			p = $.extend(p, options);
 			// p.speed = Number(p.speed);
-			p.speed = 15
+			p.speed = 50
 			p.duration = 1000
 			p.duration = p.duration > 1 ? p.duration - 1 : 1;
 			defaultProperty.originalStopImageNumber = options.stopImageNumber;
