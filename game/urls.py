@@ -8,7 +8,7 @@ urlpatterns = [
     # 영화 랜덤해주는 곳
     path('',views.index,name="index"),
     # 예고편 보러 가기
-    path('<int:movie_pk>/',views.movie_detail,name="movie_detail"),
+    path('<int:game_idx>/',views.movie_detail,name="movie_detail"),
     # 예고편 찜하기
     path('<int:movie_pk>/like/', views.like, name='like'),
     # 예고편에서 댓글쓰기

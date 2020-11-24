@@ -1,6 +1,6 @@
 # 영화 
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Movie,Genre
+from .models import Movie,Genre,TempMovie
 from .forms import CommentForm
 
 import random
@@ -26,29 +26,41 @@ def index(request):
     return render(request,'game/index.html',context)
 
 # 이렇게 선언 했는데 
-total = [] 
+ 
 # 게임 페이지로 넘어가는 함수 
 def play_game(request):
-    # 여기서 DB지우면?
+    tempmovieall = TempMovie.objects.all()
+    tempmovieall.delete()
+    total = []
     num = [i for i in range(1,48)]
     # 중복없이 10개 뽑기
     randomNum = random.sample(num, 10)
     # print(randomNum)
-    for i in randomNum :
+    for idx,i in enumerate(randomNum) :
         getMovie = Movie.objects.get(id=i)
+        TempMovie.objects.create(poster_idx=idx,movie_id=getMovie.id)
         total.append(getMovie)
     context = {
         'movies': total,
     }
+
     return render(request, 'game/play_game.html', context)
 
-print(total) # 여기서 빈값으로 넘어옴 ..삽질 오조오억번 
+
 # 예고편 보러가기
-def movie_detail(request,movie_pk):
+def movie_detail(request,game_idx):
     # 넘어온 movie_pk가 위에 total의 인덱스로 사용되서 value값을 끄집어내여함 
-    # 근데 total 부분이 저장이 안돼!!왜!!
-    print(movie_pk)
+    # # 근데 total 부분이 저장이 안돼!!왜!!
+    print('게임인덱스 :', game_idx)
+    # print('게임인덱스+1 :', game_idx+1)
+    tempmovie = get_object_or_404(TempMovie,poster_idx=game_idx)
+    movie_pk = tempmovie.movie_id
     movie = get_object_or_404(Movie,pk=movie_pk)
+
+    # 임시 영화 데이터 다 썼으니까 초기화
+    tempmovieall = TempMovie.objects.all()
+    tempmovieall.delete()
+
     # 예고편 가져오기
     URL = 'https://www.googleapis.com/youtube/v3/search'
     # API_KEY='AIzaSyCdneHhIhINFW9826nIXk0OJVtSnCq_aI8'

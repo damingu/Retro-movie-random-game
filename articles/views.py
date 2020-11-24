@@ -15,7 +15,7 @@ def index(request):
         print(article.movie.poster_path)
     context = {
         'articles1':articles[:3],
-        'articles2':articles[3:],
+        'articles2':articles[3:6],
     }
     
     return render(request,'articles/index.html',context)

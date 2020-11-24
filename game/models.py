@@ -27,3 +27,9 @@ class MovieComment(models.Model):
 
     def __str__(self):
         return self.content
+
+
+class TempMovie(models.Model):
+    movie_id = models.IntegerField()
+    poster_idx = models.IntegerField()
+
