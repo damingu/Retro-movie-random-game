@@ -39,18 +39,10 @@ $(function(){
     // 예고편 보러가기 함수로 바로 보내주기
 		const MOVIE_URL = `/${RandomInt}/`
 		console.log(RandomInt)
-		window.setTimeout(function() {window.location.href = `/${RandomInt}/`}, 3000);
+		// 여기 주석 풀기 
+		// window.setTimeout(function() {window.location.href = `/${RandomInt}/`}, 3000);
 	
-		
-    // const csrfToken = document.querySelector('input[name=csrfmiddlewaretoken]').value
-    // const options = {headers: {'X-CSRFToken': csrfToken}} 
-    // axios.post(MOVIE_URL, {}, options)
-    //   .then(res =>{
-		// 		console.log(res)
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //   })
+	
     
     var updateParamater = function(){
       p['stopImageNumber'] = RandomInt
