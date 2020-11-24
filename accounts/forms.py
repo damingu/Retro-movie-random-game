@@ -7,7 +7,7 @@ class CustomUserCreationForm(UserCreationForm):
     username = forms.CharField(
         label = '',
         widget = forms.TextInput(attrs={
-            'class': 'form-control', 
+            'class': 'login-username', 
             'placeholder': 'username',
         }),
         error_messages = {
@@ -18,7 +18,7 @@ class CustomUserCreationForm(UserCreationForm):
     password1 = forms.CharField( # models.py의 type
         label = '',
         widget = forms.PasswordInput(attrs={ # Input type 
-            'class': 'form-control',
+            'class': 'login-password',
             'placeholder': 'password',
         }),
         error_messages= {
@@ -29,7 +29,7 @@ class CustomUserCreationForm(UserCreationForm):
     password2 = forms.CharField(
         label = '',
         widget = forms.PasswordInput(attrs={
-            'class': 'form-control',
+            'class': 'login-password',
             'placeholder': 'password 확인'
         }),
         error_messages= {
@@ -47,7 +47,7 @@ class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(
         label = '',
         widget = forms.TextInput(attrs={
-            'class': 'form-control', 
+            'class': 'login-username', 
             'placeholder': 'username',
         }),
         error_messages = {
@@ -58,7 +58,7 @@ class CustomAuthenticationForm(AuthenticationForm):
     password = forms.CharField( # models.py의 type
         label = '',
         widget = forms.PasswordInput(attrs={ # Input type 
-            'class': 'form-control',
+            'class': 'login-password',
             'placeholder': 'password',
         }),
         error_messages= {

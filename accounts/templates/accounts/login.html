@@ -11,16 +11,26 @@ login
 {% endblock %}
 
 {% block content %}
-<h1 class="test">로그인 페이지입니다.</h1>
-<form action="" method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button>로그인</button>
-  <hr>
-  <a href="/accounts/login/">장고 제공 로그인</a>
- 
-<a href="{% provider_login_url 'google'%}" >구글 로그인</a><br>
-<a href="{% provider_login_url 'naver' %}" >네이버 로그인</a><br>
+<div style="margin-top:250px;">
+  <form action="" method="POST"  class="login-form">
+    <p class="login-text">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-lock fa-stack-1x"></i>
+      </span>
+    </p>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="login-submit">Login</button>
+    <hr>
+    <a href="/accounts/login/">장고 제공 로그인</a>
+  
+    <a href="{% provider_login_url 'google'%}" >구글 로그인</a><br>
+    <a href="{% provider_login_url 'naver' %}" >네이버 로그인</a><br>
+  </form>
+</div>
 
+<div class="underlay-photo"></div>
+<div class="underlay-black"></div>
 {% endblock %}
 

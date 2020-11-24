@@ -5,34 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}base{% endblock %}</title>
   <!-- CSS -->
-  {% block css %}{% endblock %}
+  {% load static %}
+  {% block css %}
+  <link rel="stylesheet" href="{% static 'stylesheets/style.css' %}">
+  {% endblock %}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 <body>
-  <ul class="nav justify-content-center">
-    <li class="nav-item">
-      <a class="nav-link active" href="{%url 'accounts:login'%}">로그인</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{%url 'accounts:logout'%}">로그아웃</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{%url 'accounts:signup'%}">회원가입</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{%url 'articles:index'%}">커뮤니티</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{%url 'game:index'%}">게임</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{%url 'game:my_movie_list'%}">찜한목록</a>
-    </li>
-  </ul>
+<header class="main-header clearfix" role="header">
+  <nav id="menu" class="main-nav" role="navigation">
+    <ul class="main-menu">
+      <!-- 로그인 시 -->
+      {% if request.user.is_authenticated %}
+      <li class="has-submenu"><a href="#section2">Info</a>
+        <ul class="sub-menu">
+          <li class="">
+            <a class="" href="">Profile</a>
+          </li>
+          <li class="">
+            <a class="" href="{%url 'game:my_movie_list'%}">찜한목록</a>
+          </li>
+          <li class="">
+            <a class="" href="{%url 'accounts:logout'%}">로그아웃</a>
+          </li>
+        </ul>
+      </li>
+      {% else %}
+      <li class="">
+        <a class="" href="{%url 'accounts:login'%}">로그인</a>
+      </li>
+      
+      <li class="">
+        <a class="" href="{%url 'accounts:signup'%}">회원가입</a>
+      </li>
+      {% endif %}
+      <li class="">
+        <a class="" href="{%url 'articles:index'%}">커뮤니티</a>
+      </li>
+      <li class="">
+        <a class="" href="{%url 'game:index'%}">게임</a>
+      </li>
+      
+    </ul>
+  </nav>
+</header>
+  <div style="height:80px;">
+  </div>
   <div class="container">
     {% block content %}
     {% endblock %}
   </div>
+  <div class="underlay-photo"></div>
+  <div class="underlay-black"></div>
   <!-- jQuery and JS bundle w/ Popper.js -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   {% block script %}
