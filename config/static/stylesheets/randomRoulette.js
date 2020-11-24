@@ -33,20 +33,24 @@ $(function(){
 	// 멈춤 버튼을 누르면 난수 생성 -> 이미지 이름값으로 넘겨줌
 	$('.stop').click(function(){
 		// 무작위 범위 == 사진 갯수
-		var RandomInt = getRandomInt(1, 10)
+		var RandomInt = getRandomInt(0, 9)
     console.log(RandomInt)
     $('.test').text(RandomInt)
     // 예고편 보러가기 함수로 바로 보내주기
-    const MOVIE_URL = `/${RandomInt}/`
-    const csrfToken = document.querySelector('input[name=csrfmiddlewaretoken]').value
-    const options = {headers: {'X-CSRFToken': csrfToken}} 
-    axios.post(MOVIE_URL, {}, options)
-      .then(res =>{
-        // console.log(res)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+		const MOVIE_URL = `/${RandomInt}/`
+		console.log(RandomInt)
+		window.setTimeout(function() {window.location.href = `/${RandomInt}/`}, 3000);
+	
+		
+    // const csrfToken = document.querySelector('input[name=csrfmiddlewaretoken]').value
+    // const options = {headers: {'X-CSRFToken': csrfToken}} 
+    // axios.post(MOVIE_URL, {}, options)
+    //   .then(res =>{
+		// 		console.log(res)
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //   })
     
     var updateParamater = function(){
       p['stopImageNumber'] = RandomInt
