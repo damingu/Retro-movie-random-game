@@ -1,0 +1,59 @@
+.article{
+  background: #ffba41;
+  margin: auto;
+  padding: 0.5rem;
+  margin-top: 5rem;
+}
+.article-header{
+  height: 50px;
+  border-bottom: 1px solid rgba(255, 255, 255, .5);
+}
+.article-content{
+  height:500px;
+  background-color: #ffd35c;
+  border-bottom: 1px solid rgba(255, 255, 255, .5);
+  margin:2%;
+}
+.article-footer{
+  height: 3rem;
+  background: #ffba41;
+}
+.comment {
+  background: #ffba41;
+  margin: auto;
+  padding: 0.5rem;
+}
+.comment-item {
+  background-color: #ffd35c;
+  margin:2%;
+}
+.line {
+  border-bottom: 1px solid rgba(255, 255, 255, .5);
+}
+
+.comment-create {
+  background: #ffba41;
+  border: 0 solid;
+  border-bottom: 1px solid rgba(255, 255, 255, .5);
+  color: white;
+  display: block;
+  margin: 1rem;
+  padding: 0.5rem;
+  transition: 250ms background ease-in;
+  width: calc(100% - 3rem);
+}
+.comment-create:focus{
+  background: #ffd35c;
+  color: #0c1e34;
+  transition: 150ms background ease-in;
+}
+.submit-btn {
+  border: 1px solid;
+  background: #005479;
+  color: #f5a302;
+  display: block;
+  margin: 1rem auto;
+  min-width: 1px;
+  padding: 0.25rem;
+  transition: 250ms background ease-in;
+}

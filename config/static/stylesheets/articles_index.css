@@ -1,0 +1,31 @@
+.default-text {
+	color: #ffd35c;
+}
+
+.community-box {
+  background: #f5a302;
+  margin: auto;
+  padding: 0.5rem;
+}
+.community-item{
+  background: #ffba41;
+  margin: auto;
+  padding: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, .5);
+}
+.card-height{
+  height:315px;
+  background: #0c1e34 !important;
+}
+.card-height-95{
+  height:95%;
+  background: #0c1e34;
+  border: 0px solid #0c1e34 !important;
+}
+.menu_list{
+  width: 100%;
+}
+.slide-card-color{
+  background:#0c1e34;
+  height:75%;
+}

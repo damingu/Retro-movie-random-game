@@ -39,10 +39,11 @@ class ArticleForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     
     content = forms.CharField(
-        label = 'Content',
+        label = '',
         widget=forms.TextInput(
             attrs={
-                'class':"my-content form-control",
+                'class':"comment-create",
+                'placeholder':"댓글을 입력하세요"
             }
         )
     )

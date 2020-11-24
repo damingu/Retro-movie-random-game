@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     #provider : 소셜로그인 제공업체
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.naver',
+
+    #장고 씨드
+    'django_seed',
 ]
 
 MIDDLEWARE = [

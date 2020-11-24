@@ -5,8 +5,6 @@
 }
  body {
 	 font-weight: 100;
-	 overflow: hidden;
-	 
 }
  input ::-webkit-input-placeholder {
 	 color: #005479;
