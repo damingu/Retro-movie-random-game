@@ -57,10 +57,6 @@ def movie_detail(request,game_idx):
     movie_pk = tempmovie.movie_id
     movie = get_object_or_404(Movie,pk=movie_pk)
 
-    # 임시 영화 데이터 다 썼으니까 초기화
-    tempmovieall = TempMovie.objects.all()
-    tempmovieall.delete()
-
     # 예고편 가져오기
     URL = 'https://www.googleapis.com/youtube/v3/search'
     API_KEY='AIzaSyCdneHhIhINFW9826nIXk0OJVtSnCq_aI8'

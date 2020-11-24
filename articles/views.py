@@ -7,15 +7,19 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods,require_POST,require_GET
 
 from django.db.models import Q
+
+from django.http import JsonResponse
 # Create your views here.
 def index(request):
     articles = Article.objects.filter(rating__gte=5)
+    real_articles = Article.objects.all().order_by('-pk')
     poster_path =[]
     for article in articles:
         print(article.movie.poster_path)
     context = {
-        'articles1':articles[:3],
-        'articles2':articles[3:6],
+        'articles1':articles[:4],
+        'articles2':articles[4:8],
+        'real_articles':real_articles,
     }
     
     return render(request,'articles/index.html',context)
@@ -96,20 +100,20 @@ def create_comment(request, article_pk):
     return render(request, 'articles/detail.html', context)
 
 
-# def like(request, article_pk):
-#     if request.user.is_authenticated:
-#         article = get_object_or_404(Article, pk=article_pk)
-#         user = request.user
-
-#         if article.like_users.filter(pk=user.pk).exists():
-#             article.like_users.remove(user)
-#             is_like=False
-#         else:
-#             article.like_users.add(user)
-#             is_like=True
-#         data = {
-#             'is_like':is_like,
-#             'like_count': article.like_users.count(),
-#         }
-#         return JsonResponse(data)
-#     return redirect('accounts:login')
+def like(request, article_pk):
+    if request.user.is_authenticated:
+        article = get_object_or_404(Article, pk=article_pk)
+        user = request.user
+        
+        if article.like_user.filter(pk=user.pk).exists():
+            article.like_user.remove(user)
+            is_like=False
+        else:
+            article.like_user.add(user)
+            is_like=True
+        data = {
+            'is_like':is_like,
+            'like_count': article.like_user.count(),
+        }
+        return JsonResponse(data)
+    return redirect('accounts:login')

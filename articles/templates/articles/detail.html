@@ -1,46 +1,130 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
-
+{% load static %}
+  {% block css %}
+    <link rel="stylesheet" href="{% static 'stylesheets/articles_detail.css' %}">
+  {% endblock %}
 {% block content %}
-<div>
-  <div class="row justify-content-between">
+
+<div class="article rounded-top">
+  <!--제목 -->
+  <div class="row justify-content-between m-0 article-header align-items-center p-1">
     <span>
       {{article.title}}
     </span>
     <span>
-      {{article.created_at}}
+      {% if article.updated_at != article.created_at %}
+      <span>수정 : {{article.updated_at}}</span>
+      {% else %}
+      <span>{{article.created_at}}</span>
+      {% endif %}
     </span>
   </div>
-  <div>
-    {{article.movie.title}}
+  <div class="article-content">
+    <div class="row">
+      <div class="col-2" >
+        <img src="https://image.tmdb.org/t/p/w500/{{article.movie.poster_path}}" alt="" width="100%">
+      </div>
+      {{article.movie.title}}
+    </div>
+    <div class="pt-2">
+      {{article.content}}
+    </div>
   </div>
-  <div>
-    {{article.content}}
+  <div class="m-0 line pb-2 d-flex flex-column align-items-center">
+    <div>
+      나의 평점 : <span style="background-color:#005479">{% if article.rating == 1 %}⭐
+      {%elif article.rating == 2 %}⭐⭐
+      {%elif article.rating == 3 %}⭐⭐⭐
+      {%elif article.rating == 4 %}⭐⭐⭐⭐
+      {% else %}⭐⭐⭐⭐⭐
+      {% endif %}</span>
+    </div>
+    <div>
+      좋아요 : <span id="likeCount-{{article.pk}}" class="d-inline">{{ article.like_user.all|length }}</span>
+    </div>
   </div>
-  <div>
-    {{article.rating}}
+  <div class="d-flex justify-content-between">
+    <div class="pl-3 pr-3">
+      <!-- 좋아요 -->
+      <form action="{% url 'articles:like' article.pk %}"method="POST" id="form_like" data-articleId="{{article.pk}}" class="d-inline">
+        {% csrf_token %}
+        {% if user in article.like_user.all %}
+          <button class="btn btn-link" style="box-shadow: none !important;">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill heart-{{article.pk}}" style="color:crimson;" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+            </svg>
+          </button>
+        {% else %}
+          <button class="btn btn-link" style="box-shadow: none !important;">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill heart-{{article.pk}}" style="color:black;" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+            </svg>
+            
+          </button>
+        {% endif %}
+      </form>
+    </div>
+    <div class="pl-3 pr-3">
+      <a href="{% url 'articles:update' article.pk %}">수정</a>
+    </div>
   </div>
 </div>
-<h4>댓글 목록</h4>
-{% if comments|length %}
-  <p><b>{{ comments|length }}개의 댓글이 있습니다.</b></p>
-{% endif %}
-{% for comment in comments %}
-  <div>
-    {{ comment.user }} - {{ comment.content }}
+<div class="comment">
+  <h4>댓글 목록</h4>
+  {% for comment in comments %}
+    <div class="comment-item">
+      <strong>{{ comment.user }}</strong> - {{ comment.content }}
+    </div>
+  {% empty %}
+    <p><b>댓글이 없어요..</b></p>
+  {% endfor %}
+  <hr>
+  {% if request.user.is_authenticated %}
+    <form action="{% url 'articles:create_comment' article.pk %}" method="POST">
+      {% csrf_token %}
+      {{ comment_form }}
+      {% comment %} <input type="submit" class="submit-btn"> {% endcomment %}
+    </form>
+  {% else %}
+  <a href="{% url 'accounts:login' %}">[댓글을 작성하려면 로그인하세요.]</a>
+  {% endif %}
+</div>
+<div class="article-footer rounded-bottom">
+  <div class="d-flex justify-content-end">
+    <div class="pl-3 pr-3">
+      <a href="{% url 'articles:index' %}">[back]</a>
+    </div>
   </div>
-{% empty %}
-  <p><b>댓글이 없어요..</b></p>
-{% endfor %}
-<hr>
-{% if request.user.is_authenticated %}
-  <form action="{% url 'articles:create_comment' article.pk %}" method="POST">
-    {% csrf_token %}
-    {{ comment_form }}
-    <input type="submit">
-  </form>
-{% else %}
-<a href="{% url 'accounts:login' %}">[댓글을 작성하려면 로그인하세요.]</a>
-{% endif %}
-<a href="{% url 'articles:index' %}">[back]</a>
+</div>
 {% endblock content %}
+{% block script %}
+<script>
+  const likeBtnForm = document.querySelector('#form_like')
+  const articleid =likeBtnForm.dataset.articleid
+  console.log(likeBtnForm.dataset)
+  console.log(articleid)
+  likeBtnForm.addEventListener('click',function (e) {
+    e.preventDefault() 
+    
+    const API_URL = `/articles/${articleid}/like/`
+    const csrfToken = document.querySelector('input[name=csrfmiddlewaretoken]').value
+    const options = {headers: {'X-CSRFToken': csrfToken}}
+
+    axios.post(API_URL,{},options)
+      .then(res => {
+        
+        const { is_like,like_count } =res.data 
+        const likecart = document.querySelector(`.heart-${articleid}`)
+        likecart.style.color= is_like ? 'crimson' : 'black'
+
+        const likeCount = document.querySelector(`#likeCount-${articleid}`)
+        likeCount.innerText = `${like_count}`
+        
+      })
+      .catch(res => {
+        console.log(res.data)
+      })
+  })
+</script>
+{% endblock script %}

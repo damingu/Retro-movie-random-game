@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
   {% block css %}
-  <link rel="stylesheet" href="{% static 'stylesheets/style.css' %}">
+    <link rel="stylesheet" href="{% static 'stylesheets/articles_index.css' %}">
   {% endblock %}
 {% block content %}
 <!-- 글 목록 나열-->
@@ -27,14 +27,14 @@
               <div class="carousel-item active">
                 <div class="row">
                   {% for article in articles1 %}
-                  <div class="col-md-4 mb-3">
-                    <div class="card">
-                      
-                      <img class="img-fluid m-auto" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{article.movie.poster_path}}">
-
-                      <div class="card-body">
-                        <h4 class="card-title">{{article.title}}</h4>
-                        <p class="card-text">{{article.content}}</p>
+                  <div class="col-md-3 mb-3 card-height">
+                    <div class="card card-height-95">
+                      {% comment %} <img class="img-fluid m-auto" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{article.movie.poster_path}}"> {% endcomment %}
+                      <div class="d-flex justify-content-center slide-card-color" style="height:75%">
+                        <img class="img-fluid col-10 p-auto" alt="100%x280" src="https://image.tmdb.org/t/p/w500//mGrQx2zffkconsCrxeZ1sHkCBjb.jpg" style="height:100%;">
+                      </div>
+                      <div class="card-body slide-card-color d-flex justify-content-center">
+                        <h6 class="card-title default-text col-10">{{article.title}}</h6>
                       </div>
                     </div>
                   </div>
@@ -44,15 +44,15 @@
             <div class="carousel-item">
                 <div class="row">
                   {% for article in articles2 %}
-                  <div class="col-md-4 mb-3">
-                    <div class="card">
-                      <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{article.movie.poster_path}}">
-                      <div class="card-body">
-                        <h4 class="card-title">{{article.title}}</h4>
-                        <p class="card-text">{{article.content}}</p>
-
+                  <div class="col-md-3 mb-3 card-height">
+                    <div class="card card-height-95">
+                      {% comment %} <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{article.movie.poster_path}}"> {% endcomment %}
+                      <div class="d-flex justify-content-center slide-card-color" style="height:75%">
+                        <img class="img-fluid col-10 p-auto" alt="100%x280" src="https://image.tmdb.org/t/p/w500//mGrQx2zffkconsCrxeZ1sHkCBjb.jpg" style="height:100%;">
                       </div>
-
+                      <div class="card-body slide-card-color d-flex justify-content-center">
+                        <h6 class="card-title default-text col-10">{{article.title}}</h6>
+                      </div>
                     </div>
                   </div>
                   {% endfor %}
@@ -80,10 +80,45 @@
             </div>
           </div>
         </div>
-        <!-- 여기서부터 최신글 -->
       </div>
     </div>
   </section>
+  <!-- 여기서부터 최신글 -->
+  <div>
+    <p class="default-text">여기서부터 최신글</p>
+  </div>
+  <div class="community-box">
+    <div class="row menu_list"> 
+      <div class="col-2 text-center">
+        <span><b>영화명</b></span>
+      </div>
+      <div class="col-6 text-center">
+        <span><b>제목</b></span>
+      </div>
+      <div class="col-2 text-center">
+        <span><b>평점</b></span>
+      </div>
+      <div class="col-2 text-center">
+        <span><b>작성일</b></span>
+      </div>
+    </div>
+    {% for article in real_articles %}
+    <div class="row community-item menu_list m-0"> 
+      <div class="col-2 text-center">
+        <span>{{article.movie.title}}</span>
+      </div>
+      <div class="col-6 text-center">
+        <span><a href="{% url 'articles:detail' article.pk %}">{{article.title}}</a></span>
+      </div>
+      <div class="col-2 text-center">
+        <span>{{article.rating}}</span>
+      </div>
+      <div class="col-2 text-center">
+        <span>{{article.created_at}}</span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
 </section>
   {% comment %} {% for article in articles %}
   <a href="{% url 'articles:detail' article.pk %}">{{article.title}}</a>
