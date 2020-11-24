@@ -1,3 +1,4 @@
+# 영화 
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Movie,Genre
 from .forms import CommentForm
@@ -7,6 +8,10 @@ import requests
 from bs4 import BeautifulSoup
 
 from django.http import JsonResponse
+
+# 게임
+from random import randint
+ 
 
 # Create your views here.
 def gameadmin(request):
@@ -171,6 +176,23 @@ def update_movie(request):
     }
     # 영화 업데이트했으면 그 결과 보는 페이지 하나 만들었어요.
     return render(request,'game/update_movie.html',context)
+
+
+# 게임 페이지로 넘어가는 함수 
+def play_game(request):
+    total = [] 
+    cnt = 0 
+    while cnt < 11 : # 10개의 객체를 랜덤으로 뽑음 
+        cnt += 1 
+        num = randint(1, 48)
+        getMovie = Movie.objects.get(id=num)
+        total.append(getMovie)
+    context = {
+        'movies': total,
+    }
+    return render(request, 'game/play_game.html', context)
+
+
 
 
 
