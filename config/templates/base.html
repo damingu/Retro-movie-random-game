@@ -24,14 +24,14 @@
   <nav id="menu" class="main-nav" role="navigation">
     <ul class="main-menu">
       <!-- 로그인 시 -->
+      {% if request.user.is_authenticated %}
       <li class="">
         <a class="" href="{%url 'articles:index'%}">커뮤니티</a>
       </li>
       <li class="">
         <a class="" href="{%url 'game:play_game'%}">게임</a>
       </li>
-      {% if request.user.is_authenticated %}
-      <li class="has-submenu"><a href="#section2">Info</a>
+      <li class="has-submenu"><a href="#section2">{{request.user.username}}</a>
         <ul class="sub-menu">
           {% comment %} <li class="">
             <a class="" href="">Profile</a>
