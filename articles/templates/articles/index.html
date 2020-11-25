@@ -52,7 +52,7 @@
                           <img class="img-fluid col-10 p-auto" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{article.movie.poster_path}}" style="height:100%;">
                         </div>
                         <div class="card-body slide-card-color d-flex justify-content-center">
-                          <h6 class="card-title default-text col-10">{{article.title}}</h6>
+                          <h6 class="card-title default-text col-10"><a class="default-text" href="{% url 'articles:detail' article.pk %}">{{article.title}}</a></h6>
                         </div>
                       </div>
                     </div>
