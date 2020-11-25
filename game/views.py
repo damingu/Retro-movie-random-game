@@ -1,6 +1,8 @@
 # 영화 
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Movie,Genre,TempMovie
+from articles import models as articles_models
+
 from .forms import CommentForm
 
 import random
@@ -8,6 +10,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from django.http import JsonResponse
+
 
 # 게임
 import random 
@@ -127,7 +130,9 @@ def create_comment(request, movie_pk):
 def my_movie_list(request):
     user = request.user
     movies=user.like_movies.all()
-    print(movies)
+    # writen_articles = get_object_or_404(articles_models.Article,pk=user.id)
+
+
     context={
         'movies':movies
     }

@@ -3,27 +3,31 @@ from .models import Article, Comment
 
 class ArticleForm(forms.ModelForm):
     title = forms.CharField(
-        label = 'Title',
+        label = '',
         widget=forms.TextInput(
             attrs={
-                'class':"my-content form-control",
+                'class':"article-form",
+                'placeholder':'Title 입력',
             }
         )
     )
     content = forms.CharField(
-        label = 'Content',
+        label = '',
         widget=forms.Textarea(
             attrs={
-                'class':"my-content form-control",
+                'class':"article-form",
+                'placeholder':'내용입력'
             }
         )
     )
     rating = forms.IntegerField(
         max_value=5,
         min_value=0,
+        label = '',
         widget=forms.NumberInput(
             attrs={
-                'placeholder':'0~5'
+                'class':"article-form",
+                'placeholder':'0~5',
             }
         ),
         error_messages={

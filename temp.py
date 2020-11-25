@@ -1,7 +1,11 @@
-import json
-data=open('movies.json',encoding='cp949')
-movie_info = json.load(data)
-print(movie_info)
+a={'a':1,'b':5,'c':4}
+a=sorted(a.items(),reverse=True,key=lambda item: item[1])
+print(a)
+
+# import json
+# data=open('movies.json',encoding='cp949')
+# movie_info = json.load(data)
+# print(movie_info)
 # import requests
 # from bs4 import BeautifulSoup
 

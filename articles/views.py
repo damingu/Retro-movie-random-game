@@ -11,17 +11,22 @@ from django.db.models import Q
 from django.http import JsonResponse
 # Create your views here.
 def index(request):
-    articles = Article.objects.filter(rating__gte=5)
     real_articles = Article.objects.all().order_by('-pk')
-    poster_path =[]
-    for article in articles:
-        print(article.movie.poster_path)
+    
+    # 좋아요 많은거 순으로 보여주기!
+    rank_data = {}
+    for a in real_articles:
+        rank_data[a.pk]=len(a.like_user.all())
+    rank_data=sorted(rank_data.items(),reverse=True,key=lambda item: item[1])[:8]
+    rank_articles = []
+    for id,_ in rank_data:
+        rank_articles.append(get_object_or_404(Article,pk=id))
+
     context = {
-        'articles1':articles[:4],
-        'articles2':articles[4:8],
+        'articles1':rank_articles[:4],
+        'articles2':rank_articles[4:8],
         'real_articles':real_articles,
     }
-    
     return render(request,'articles/index.html',context)
 
 

@@ -1,0 +1,39 @@
+.form-int{
+  background: #f5a302;
+  min-height: 1rem;
+	 margin: auto;
+	 max-width: 80%;
+	 padding: 0.5rem;
+}
+
+.article-form{
+  background: #ffba41;
+  border: 0 solid;
+  border-bottom: 1px solid rgba(255, 255, 255, .5);
+  color:#121b2f;
+  display: block;
+  margin: 1rem;
+  padding: 0.5rem;
+  transition: 250ms background ease-in;
+  width: calc(100% - 3rem);
+}
+.article-form:focus {
+  background: #ffd35c;
+  color: #0c1e34;
+  transition: 150ms background ease-in;
+}
+.submit-btn {
+  border: 1px solid;
+  background: #005479;
+  color: #f5a302;
+  display: block;
+  margin: 1rem auto;
+  min-width: 1px;
+  padding: 0.25rem;
+  transition: 250ms background ease-in;
+}
+.submit-btn:hover, .submit-btn:focus {
+  background: #ffd35c;
+  color: black;
+  transition: 250ms background ease-in;
+}

@@ -1,0 +1,20 @@
+.card-box {
+  background: #0c1e34 !important;
+  margin: auto;
+  padding: 0.5rem;
+}
+.card-top{
+  height: 0.5rem;
+  background: #f5a302;
+}
+.card-content{
+  background: #f5a302;
+}
+.card-text{
+  height: 4rem;
+}
+
+.card-content:hover{
+  background: #ffd35c;
+  transition: 250ms background ease-in;
+}

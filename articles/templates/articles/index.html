@@ -6,7 +6,7 @@
 {% block content %}
 <!-- 글 목록 나열-->
 <section >
-  <h1 style="color:#f5a425;">커뮤니티</h1>
+  <h1 style="color:white;">📝Movie Review</h1>
   <section class="pt-5 pb-5">
     <div class="container">
       <div class="row">
@@ -14,10 +14,10 @@
           <h3 class="mb-3" style="color:#f5a425;"> 인기글 </h3>
         </div>
         <div class="col-6 text-right">
-          <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+          <a class="custom-btn mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
             <i class="fa fa-arrow-left"></i>
           </a>
-          <a class="btn btn-primary mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
+          <a class="custom-btn mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
             <i class="fa fa-arrow-right"></i>
           </a>
         </div>
@@ -31,10 +31,10 @@
                     <div class="card card-height-95">
                       {% comment %} <img class="img-fluid m-auto" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{article.movie.poster_path}}"> {% endcomment %}
                       <div class="d-flex justify-content-center slide-card-color" style="height:75%">
-                        <img class="img-fluid col-10 p-auto" alt="100%x280" src="https://image.tmdb.org/t/p/w500//mGrQx2zffkconsCrxeZ1sHkCBjb.jpg" style="height:100%;">
+                        <img class="img-fluid col-10 p-auto" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{article.movie.poster_path}}" style="height:100%;">
                       </div>
                       <div class="card-body slide-card-color d-flex justify-content-center">
-                        <h6 class="card-title default-text col-10">{{article.title}}</h6>
+                        <h6 class="card-title col-10 text-center"><a class="default-text" href="{% url 'articles:detail' article.pk %}">{{article.title}}</a></h6>
                       </div>
                     </div>
                   </div>
@@ -48,7 +48,7 @@
                     <div class="card card-height-95">
                       {% comment %} <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{article.movie.poster_path}}"> {% endcomment %}
                       <div class="d-flex justify-content-center slide-card-color" style="height:75%">
-                        <img class="img-fluid col-10 p-auto" alt="100%x280" src="https://image.tmdb.org/t/p/w500//mGrQx2zffkconsCrxeZ1sHkCBjb.jpg" style="height:100%;">
+                        <img class="img-fluid col-10 p-auto" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{article.movie.poster_path}}" style="height:100%;">
                       </div>
                       <div class="card-body slide-card-color d-flex justify-content-center">
                         <h6 class="card-title default-text col-10">{{article.title}}</h6>
@@ -95,26 +95,32 @@
       <div class="col-6 text-center">
         <span><b>제목</b></span>
       </div>
-      <div class="col-2 text-center">
+      <div class="col-1 text-center">
         <span><b>평점</b></span>
       </div>
       <div class="col-2 text-center">
         <span><b>작성일</b></span>
       </div>
+      <div class="col-1 text-center">
+        <span><b>좋아요</b></span>
+      </div>
     </div>
     {% for article in real_articles %}
     <div class="row community-item menu_list m-0"> 
-      <div class="col-2 text-center">
+      <div class="col-2 d-flex justify-content-center align-items-center">
         <span>{{article.movie.title}}</span>
       </div>
-      <div class="col-6 text-center">
-        <span><a href="{% url 'articles:detail' article.pk %}">{{article.title}}</a></span>
+      <div class="col-6 d-flex justify-content-center align-items-center">
+        <span class=""><a href="{% url 'articles:detail' article.pk %}">{{article.title}}</a></span>
       </div>
-      <div class="col-2 text-center">
+      <div class="col-1 d-flex justify-content-center align-items-center">
         <span>{{article.rating}}</span>
       </div>
-      <div class="col-2 text-center">
+      <div class="col-2 d-flex justify-content-center align-items-center">
         <span>{{article.created_at}}</span>
+      </div>
+      <div class="col-1 d-flex justify-content-center align-items-center">
+        <span>{{ article.like_user.all|length }}</span>
       </div>
     </div>
     {% endfor %}

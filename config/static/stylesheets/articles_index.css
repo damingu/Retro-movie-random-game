@@ -1,3 +1,9 @@
+
+a:hover {
+	color: #FC3;
+  text-decoration: none !important;
+}
+
 .default-text {
 	color: #ffd35c;
 }
@@ -28,4 +34,16 @@
 .slide-card-color{
   background:#0c1e34;
   height:75%;
+}
+
+.custom-btn {
+  border: 1px solid;
+  background: #005479;
+  color: #f5a302;
+  transition: 250ms background ease-in;
+}
+.custom-btn:hover, .custom-btn:focus {
+  background: #ffd35c;
+  color: black;
+  transition: 250ms background ease-in;
 }

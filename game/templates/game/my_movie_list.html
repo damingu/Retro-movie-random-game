@@ -2,17 +2,21 @@
 
 {% load static %}
 {% block css %}
-  {% comment %} <link rel="stylesheet" href="{% static 'stylesheets/style.css' %}"> {% endcomment %}
+  <link rel="stylesheet" href="{% static 'stylesheets/game_mymovielist.css' %}">
 {% endblock %}
 
 {% block content %}
-<h1 class="text-center">📚찜한 목록</h1>
+<h1 class="text-center text-white">📚찜한 목록</h1>
   <div class="row">
   {% for movie in movies %}
-    <div class="card col-4 mt-3 card-color" style="background-color: #f5a302;">
-      <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" alt="포스터" width="100%" height="80%">
-      <div class="card-body m-2">
-        <p class="card-text text-center"><a href="" data-toggle="modal" data-target="#postModal-{{ movie.id }}">{{movie.title}}</a></p>
+    <div class="col-4 mt-3  card-box">
+      <div class="col-12 card-content" style="height:80%">
+        
+        <div class="pt-2"> 
+          <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" alt="포스터" width="100%" height="80%">
+        </div>
+          <!--모달-->
+        <div class="card-text d-flex justify-content-center algin-items-center"><a href="" data-toggle="modal" data-target="#postModal-{{ movie.id }}">{{movie.title}}</a></div>
         <div class="modal fade" id="postModal-{{ movie.id }}" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content flex-row">
@@ -20,12 +24,6 @@
                 <img class="card-img" src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" alt="포스터" width="315px">
               </div>
               <div class="col">
-                {% comment %} <div class="modal-header">
-                  <h5 class="modal-title" id="postModalLabel">Modal title</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div> {% endcomment %}
                 <div class="modal-body">
                   <span>
                     {{movie.title}}
@@ -37,7 +35,7 @@
                 </div>
                 <div class="modal-footer d-flex flex-column align-items-center justify-content-end">
                   <div>
-                    <a href="https://serieson.naver.com/search/search.nhn?t=all&fs=movie&q={{movie.title}}" target="_blank">보러가기</a>
+                    <a href="https://serieson.naver.com/search/search.nhn?t=all&fs=movie&q={{movie.title}}" target="_blank">영화보기</a>
                   </div>
                   <div>
                     <a href="{%url 'articles:create' movie.id %}">후기쓰기</a>
@@ -49,7 +47,84 @@
         </div>
       </div>
     </div>
-    {% comment %} "{%url 'articles:create' movie.id %}" {% endcomment %}
+
+    <!--임시-->
+    <div class="col-4 mt-3  card-box">
+      <div class="col-12 card-content" style="height:80%">
+        
+        <div class="pt-2"> 
+          <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" alt="포스터" width="100%" height="80%">
+        </div>
+          <!--모달-->
+        <div class="card-text d-flex justify-content-center algin-items-center"><a href="" data-toggle="modal" data-target="#postModal-{{ movie.id }}">{{movie.title}}</a></div>
+        <div class="modal fade" id="postModal-{{ movie.id }}" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content flex-row">
+              <div class="col-8 p-0">
+                <img class="card-img" src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" alt="포스터" width="315px">
+              </div>
+              <div class="col">
+                <div class="modal-body">
+                  <span>
+                    {{movie.title}}
+                  </span>
+                  <br>
+                  <span>
+                    평점 : {{movie.vote_average}}
+                  </span>
+                </div>
+                <div class="modal-footer d-flex flex-column align-items-center justify-content-end">
+                  <div>
+                    <a href="https://serieson.naver.com/search/search.nhn?t=all&fs=movie&q={{movie.title}}" target="_blank">영화보기</a>
+                  </div>
+                  <div>
+                    <a href="{%url 'articles:create' movie.id %}">후기쓰기</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4 mt-3  card-box">
+      <div class="col-12 card-content" style="height:80%">
+        
+        <div class="pt-2"> 
+          <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" alt="포스터" width="100%" height="80%">
+        </div>
+          <!--모달-->
+        <div class="card-text d-flex justify-content-center algin-items-center"><a href="" data-toggle="modal" data-target="#postModal-{{ movie.id }}">{{movie.title}}</a></div>
+        <div class="modal fade" id="postModal-{{ movie.id }}" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content flex-row">
+              <div class="col-8 p-0">
+                <img class="card-img" src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" alt="포스터" width="315px">
+              </div>
+              <div class="col">
+                <div class="modal-body">
+                  <span>
+                    {{movie.title}}
+                  </span>
+                  <br>
+                  <span>
+                    평점 : {{movie.vote_average}}
+                  </span>
+                </div>
+                <div class="modal-footer d-flex flex-column align-items-center justify-content-end">
+                  <div>
+                    <a href="https://serieson.naver.com/search/search.nhn?t=all&fs=movie&q={{movie.title}}" target="_blank">영화보기</a>
+                  </div>
+                  <div>
+                    <a href="{%url 'articles:create' movie.id %}">후기쓰기</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   {% endfor %}
   </div>
 {% endblock content %}

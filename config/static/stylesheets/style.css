@@ -134,7 +134,7 @@ a {
 
 a:hover {
 	color: #FC3;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 ul {
