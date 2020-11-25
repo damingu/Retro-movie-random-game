@@ -40,7 +40,7 @@ def play_game(request):
     tempmovieall = TempMovie.objects.all()
     tempmovieall.delete()
     total = []
-    num = [i for i in range(1,48)]
+    num = [i for i in range(1,449)]
     # 중복없이 10개 뽑기
     randomNum = random.sample(num, 10)
     # print(randomNum)

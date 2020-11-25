@@ -57,6 +57,7 @@ def detail(request,article_pk):
         'article':article,
         'comment_form': comment_form,
         'comments': comments,
+    
     }
     return render(request,'articles/detail.html',context)
 

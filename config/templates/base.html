@@ -9,6 +9,8 @@
   {% block css %}
   
   {% endblock %}
+  <!--favicon-->
+  <link rel="shortcut icon"  type="image/png" href="{% static 'stylesheets/favicon.ico' %}">
   <!--글꼴 추가-->
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap" rel="stylesheet">
@@ -23,6 +25,14 @@
 <header class="main-header clearfix" role="header">
   <nav id="menu" class="main-nav" role="navigation">
     <ul class="main-menu">
+      <div style="display:inline-block; position:absolute; left:0;">
+      <li class="">
+      <a href="{%url 'game:index' %}">
+      <img src="{% static 'stylesheets/logo.png' %}" alt="logo" width=70px height=80px style="">
+      <p style="display:inline-block;">RETRO MOVIE RANDOM GAME</p>
+      </a>
+      </li>
+      </div>
       <!-- 로그인 시 -->
       {% if request.user.is_authenticated %}
       <li class="">
@@ -40,7 +50,7 @@
             <a class="" href="{%url 'game:my_movie_list'%}">찜한목록</a>
           </li>
           <li class="">
-            <a class="text-danger" href="{%url 'accounts:logout'%}">로그아웃</a>
+            <a class="text-danger a1" href="{%url 'accounts:logout'%}">로그아웃</a>
           </li>
           {% if request.user.is_staff %}
           <li class="">
