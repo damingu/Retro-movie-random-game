@@ -16,3 +16,9 @@
   color: wheat;
   transition: 250ms background ease-in;
 }
+
+.error-page{
+  border: 1px solid #ffba41;
+  margin-top: 3rem;
+
+}

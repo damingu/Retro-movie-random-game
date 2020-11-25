@@ -298,7 +298,7 @@ p {
 	height: 28px;
 }
 .google-text{
-	font:16px;
+	font-size: 14px;
 	color:white
 }
 .naver-img{
@@ -308,7 +308,7 @@ p {
 .google-banner{
 	display: inline-block;
 	height: 36px;
-	margin: 2px;
+	margin: 3px;
 	padding: 3px;
 	border-radius: 5px;
 	background-color:#4285F4
