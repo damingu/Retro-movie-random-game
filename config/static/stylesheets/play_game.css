@@ -1,0 +1,100 @@
+h1 {
+	color: white ;
+}
+body {	
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
+
+.roulette{
+	box-shadow: 0 0 0 0.5rem #f5a302;
+	width: 350px;
+	display: inline-block;
+	text-align: center;
+}
+.roulette_container {
+	text-align:center;
+	padding: 80px;
+}
+
+.btn_container {
+	margin:20px;
+	text-align:center;
+  padding: 50px;
+}
+.btn_container .start {
+	margin-right:20px;
+}
+.log_container {
+	margin-left:25px;
+	margin-top:80px;
+}
+.demo_label {
+	border-left:5px solid gray;
+	padding-left:5px;
+	font-size: 20px;
+}
+
+
+div.param_label {
+	margin:20px 0px 10px 0px;
+}
+
+.image_sample img{
+	width : 50px;
+	cursor: pointer;
+}
+.right_container {
+	width: 550px;
+	margin-left: 100px;
+}
+.code_container {
+	margin-top:50px;
+	width: 500px;
+}
+.label-info {
+	margin-bottom: 3px;
+}
+div.ui-slider {
+	width: 300px;
+}
+
+
+/* 시작 버튼 */
+
+button{
+  background:#0c1e34 ; 
+  color:#f5a302;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+button:hover{
+  background: #f5a302;
+  color: #0c1e34 ;
+}
+button:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #ffd35c;
+  transition:200ms ease all;
+}
+button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+button:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}

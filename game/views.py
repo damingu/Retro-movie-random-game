@@ -40,7 +40,7 @@ def play_game(request):
     tempmovieall = TempMovie.objects.all()
     tempmovieall.delete()
     total = []
-    num = [i for i in range(1,48)]
+    num = [i for i in range(1,449)]
     # 중복없이 10개 뽑기
     randomNum = random.sample(num, 10)
     # print(randomNum)
@@ -63,10 +63,11 @@ def movie_detail(request,game_idx):
     movie = get_object_or_404(Movie,pk=movie_pk)
     # youtube API_KEY
     API_KEYS=[
-        'AIzaSyCa5YwT7EcLVanemRFiNHhpyVy64sKu7Dw',
-        'AIzaSyClauhHokVFylfo5bKnc80LTnNuurpC1O8',
-        'AIzaSyCdneHhIhINFW9826nIXk0OJVtSnCq_aI8',
-        'AIzaSyDthd4UCpNEiZIDddiTZZNQjxDlfsLHvc8',
+        'AIzaSyBHMW3H4EmxroW7qAhTbVto52JrCnUHx1E'
+        # 'AIzaSyCa5YwT7EcLVanemRFiNHhpyVy64sKu7Dw',
+        # 'AIzaSyClauhHokVFylfo5bKnc80LTnNuurpC1O8',
+        # 'AIzaSyCdneHhIhINFW9826nIXk0OJVtSnCq_aI8',
+        # 'AIzaSyDthd4UCpNEiZIDddiTZZNQjxDlfsLHvc8',
     ]
    
     ## 예고편 가져오기1 TMDB에서!!

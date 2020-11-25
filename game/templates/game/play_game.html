@@ -2,7 +2,7 @@
 
 {% load static %}
 {% block css %}
-  <link rel="stylesheet" href="{% static 'stylesheets/roulette.css' %}">
+  <link rel="stylesheet" href="{% static 'stylesheets/play_game.css' %}">
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css">
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css">
 {% endblock %}
@@ -23,8 +23,7 @@
   </div>
   <div class="btn_container">
     <p>
-    <button class="btn btn-large btn-primary start"> START </button>
-    <button class="stop btn-large btn btn-warning" @click="test"> STOP </button>
+    <button class="stop" @click="test"> STOP </button>
     </p>
 </div>
 

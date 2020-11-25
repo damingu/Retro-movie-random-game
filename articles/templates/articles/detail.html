@@ -31,7 +31,7 @@
       </div>
       <div class="m-0 line pb-2 d-flex flex-column align-items-center">
         <div>
-          나의 평점 : <span style="background-color:#005479">{% if article.rating == 1 %}⭐
+          {{ article.user }}님의 평점 : <span style="background-color:#005479">{% if article.rating == 1 %}⭐
           {%elif article.rating == 2 %}⭐⭐
           {%elif article.rating == 3 %}⭐⭐⭐
           {%elif article.rating == 4 %}⭐⭐⭐⭐
@@ -63,6 +63,7 @@
             {% endif %}
           </form>
         </div>
+        {% if request.user == article.user %}
         <div class="row">
           <div class="pl-3 pr-3 d-flex justify-content-center align-items-center">
             <a href="{% url 'articles:update' article.pk %}">수정</a>
@@ -74,6 +75,7 @@
             </form>
           </div>
         </div>
+        {% endif %}
       </div>
     </div>
     <div class="comment">

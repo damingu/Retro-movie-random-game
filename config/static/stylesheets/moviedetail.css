@@ -9,9 +9,6 @@
 
 }
 
-.youtube{
-  height:480px;
-}
 
 h2{
   color:pink;
@@ -30,7 +27,8 @@ h2{
   top: 100px;
   text-align: center;
   padding: 10px;
-  border: 0.4rem solid #f5a302;
+  border: 0.3rem solid #f5a302;
+  border-radius: 5px;
 }
 
 .shopping-basket{
@@ -78,12 +76,11 @@ button {
   background: none;
   border: 3px solid #f5a302;
   border-radius: 5px;
-  color: #fff;
+  color:  #f5a302 ; 
   display: inline-block;
   font-size: 1.6em;
   font-weight: bold;
   margin: 1em auto;
-  padding: 2em 6em;
   position: relative;
   text-transform: uppercase;
 }
@@ -110,4 +107,8 @@ button:hover {
 
 .btn-2:hover:after {
   width: 100%;
+}
+
+.shopping-btn{
+  color: white !important! ;
 }

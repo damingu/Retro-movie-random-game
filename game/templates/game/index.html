@@ -12,8 +12,8 @@
 
 {% block content %}
 <div class="my-container">
-  <h1>싸피가 좋아하는 랜덤~게임!🎰</h1>
-  <img src="https://t1.daumcdn.net/liveboard/happypet/226c5d22a96348978d1f392a509984ba.JPG" alt="실행화면" class="play-img">
+  <h1>싸피가~좋아하는~랜덤~게임!🎰</h1>
+  <img src="{% static 'stylesheets/play.gif' %}" alt="실행화면" class="play-img">
   {% if request.user.is_authenticated %}
   <div class="login-form1">
     <a href="{% url 'game:play_game' %}">
