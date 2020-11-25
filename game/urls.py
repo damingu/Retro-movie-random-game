@@ -15,7 +15,7 @@ urlpatterns = [
     # 찜한 목록 보여주기
     path('my_movie_list/',views.my_movie_list,name="my_movie_list"),
     # 예고편에서 댓글쓰기
-    path('<int:movie_pk>/comments/', views.create_comment, name='create_comment'),
+    path('<int:poster_idx>/comments/', views.create_comment, name='create_comment'),
     
     # admin용
     path('gameadmin/',views.gameadmin,name="gameadmin"),

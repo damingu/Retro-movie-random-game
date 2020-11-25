@@ -59,7 +59,7 @@ movie detail
       {% endfor %}
       <hr>
       <div style="display:inline">
-        <form action="{% url 'game:create_comment' movie.pk %}" method="POST">
+        <form action="{% url 'game:create_comment' poster_idx %}" method="POST">
           {% csrf_token %}
           {{ comment_form }}
           <button class="btn-2">댓글 작성</button>

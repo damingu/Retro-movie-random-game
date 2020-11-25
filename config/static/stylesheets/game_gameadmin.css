@@ -1,0 +1,18 @@
+.comment {
+  background: #ffba41;
+  margin: auto;
+  padding: 0.5rem;
+}
+
+.delete-btn {
+  border: 1px solid;
+  background: #ffd35c;
+  margin:2rem;
+  color:red;
+  transition: 250ms background ease-in;
+}
+.delete-btn:hover, .delete-btn:focus {
+  background: red;
+  color: wheat;
+  transition: 250ms background ease-in;
+}

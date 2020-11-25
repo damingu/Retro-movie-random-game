@@ -5,7 +5,9 @@
   <link rel="stylesheet" href="{% static 'stylesheets/articles_form.css' %}">
 {% endblock %}
 {% block content %}
-<div style="height:80px;"></div>
+<div style="height:80px;">
+  <h1 class="text-center pt-1" style="color:white">📝리뷰 작성</h1>
+</div>
 <div class="row">
   <form class="form-int col-10" action="" method="POST">
     {% csrf_token %}

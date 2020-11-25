@@ -29,7 +29,8 @@ def index(request):
     }
     return render(request,'articles/index.html',context)
 
-
+@login_required
+@require_http_methods(['GET', 'POST'])
 def create(request,movie_pk):
     movie = get_object_or_404(game_models.Movie, pk=movie_pk)
     if request.method=='POST':
@@ -60,6 +61,8 @@ def detail(request,article_pk):
     return render(request,'articles/detail.html',context)
 
 
+@login_required
+@require_http_methods(['GET', 'POST'])
 def update(request, article_pk):
     article = get_object_or_404(Article,pk=article_pk)
     if request.user == article.user:
@@ -79,6 +82,7 @@ def update(request, article_pk):
     return render(request, 'articles/form.html', context)
 
 
+@require_POST
 def delete(request, article_pk):
     if request.user.is_authenticated:
         article = Article.objects.get(pk=article_pk)
@@ -88,6 +92,7 @@ def delete(request, article_pk):
     return redirect('articles:detail', article.pk)
 
 
+@require_POST
 def create_comment(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
     comment_form = CommentForm(request.POST)
@@ -105,6 +110,16 @@ def create_comment(request, article_pk):
     return render(request, 'articles/detail.html', context)
 
 
+@require_POST
+def comments_delete(request, article_pk, comment_pk):
+    if request.user.is_authenticated:
+        comment = get_object_or_404(Comment, pk=comment_pk)
+        if request.user == comment.user:
+            comment.delete()
+    return redirect('articles:detail', article_pk)
+
+
+@require_POST
 def like(request, article_pk):
     if request.user.is_authenticated:
         article = get_object_or_404(Article, pk=article_pk)
