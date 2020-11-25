@@ -6,15 +6,15 @@
 {% block content %}
 <!-- 글 목록 나열-->
 <section >
-  <h1 style="color:white;">📝Movie Review</h1>
+  <h1 style="color:white;">커뮤니티</h1>
   <section class="pt-5 pb-5">
     <div class="container">
       <div class="row">
         <div class="col-6">
-          <h3 class="mb-3" style="color:#f5a425;"> 인기글 </h3>
+          <h3 class="mb-3 default-text"> 인기글 </h3>
         </div>
-        <div class="col-6 text-right">
-          <a class="custom-btn mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+        <div class="col-6 text-right" >
+          <a class="custom-btn mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev" >
             <i class="fa fa-arrow-left"></i>
           </a>
           <a class="custom-btn mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="next">
@@ -41,42 +41,45 @@
                   {% endfor %}
                 </div>
               </div>
-            <div class="carousel-item">
-                <div class="row">
-                  {% for article in articles2 %}
-                  <div class="col-md-3 mb-3 card-height">
-                    <div class="card card-height-95">
-                      {% comment %} <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{article.movie.poster_path}}"> {% endcomment %}
-                      <div class="d-flex justify-content-center slide-card-color" style="height:75%">
-                        <img class="img-fluid col-10 p-auto" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{article.movie.poster_path}}" style="height:100%;">
-                      </div>
-                      <div class="card-body slide-card-color d-flex justify-content-center">
-                        <h6 class="card-title default-text col-10">{{article.title}}</h6>
+              {% if articles2  %}
+              <div class="carousel-item">
+                  <div class="row">
+                    {% for article in articles2 %}
+                    <div class="col-md-3 mb-3 card-height">
+                      <div class="card card-height-95">
+                        {% comment %} <img class="img-fluid" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{article.movie.poster_path}}"> {% endcomment %}
+                        <div class="d-flex justify-content-center slide-card-color" style="height:75%">
+                          <img class="img-fluid col-10 p-auto" alt="100%x280" src="https://image.tmdb.org/t/p/w500/{{article.movie.poster_path}}" style="height:100%;">
+                        </div>
+                        <div class="card-body slide-card-color d-flex justify-content-center">
+                          <h6 class="card-title default-text col-10">{{article.title}}</h6>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  {% endfor %}
-                  {% comment %} <div class="col-md-4 mb-3">
-                    <div class="card">
-                      <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532715088550-62f09305f765?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=ebadb044b374504ef8e81bdec4d0e840">
-                      <div class="card-body">
-                        <h4 class="card-title">Special title treatment</h4>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    {% endfor %}
+                    {% comment %} <div class="col-md-4 mb-3">
+                      <div class="card">
+                        <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532715088550-62f09305f765?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=ebadb044b374504ef8e81bdec4d0e840">
+                        <div class="card-body">
+                          <h4 class="card-title">Special title treatment</h4>
+                          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
 
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="col-md-4 mb-3">
-                    <div class="card">
-                      <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=0754ab085804ae8a3b562548e6b4aa2e">
-                      <div class="card-body">
-                        <h4 class="card-title">Special title treatment</h4>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <div class="col-md-4 mb-3">
+                      <div class="card">
+                        <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=0754ab085804ae8a3b562548e6b4aa2e">
+                        <div class="card-body">
+                          <h4 class="card-title">Special title treatment</h4>
+                          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
 
+                        </div>
                       </div>
-                    </div>
-                  </div> {% endcomment %}
-                </div>
+                    </div> {% endcomment %}
+                  </div>
+              </div>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -85,10 +88,10 @@
   </section>
   <!-- 여기서부터 최신글 -->
   <div>
-    <p class="default-text">여기서부터 최신글</p>
+    <h2 class="text-white text-center"> 리스트 </h2>
   </div>
   <div class="community-box">
-    <div class="row menu_list"> 
+    <div class="row menu_list m-0"> 
       <div class="col-2 text-center">
         <span><b>영화명</b></span>
       </div>
@@ -126,6 +129,8 @@
     {% endfor %}
   </div>
 </section>
+<footer style="height:80px;">
+</footer>
   {% comment %} {% for article in articles %}
   <a href="{% url 'articles:detail' article.pk %}">{{article.title}}</a>
   <br>
