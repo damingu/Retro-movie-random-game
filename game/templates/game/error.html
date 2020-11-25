@@ -1,5 +1,21 @@
 {% extends 'base.html' %}
-
+{% load static %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'stylesheets/game_error.css' %}">
+{% endblock css %}}
 {% block content %}
-<h1 class="text-white">에러에러!!</h1>
+<div class="row justify-content-center">
+
+  <div class="col-5 d-flex flex-column  align-items-center error-page">
+    <h1 class="text-white">에러에러!!</h1>
+    <div class="article">
+      에러가 발생했네요. 
+      <br>
+      죄송합니다.
+      <br>
+      게임을 다시 시작해주세요.
+    </div>
+
+</div>
+</div>
 {% endblock content %}

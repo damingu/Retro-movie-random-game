@@ -1,0 +1,17 @@
+h1{
+  margin: auto;
+}
+
+.article{
+  background: #ffba41;
+  margin: auto;
+  padding: 0.5rem;
+  margin-top: 5rem;
+  margin-bottom:1rem;
+}
+
+.error-page{
+  border: 1px solid #ffba41;
+  margin-top: 3rem;
+
+}

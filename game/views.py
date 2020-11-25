@@ -92,7 +92,7 @@ def movie_detail(request,game_idx):
     else:
         # TMDB에 영화 예고편 YOUTUBE ID 정보가 없다면 유투브에서 직접 검색해보기
         URL = 'https://www.googleapis.com/youtube/v3/search'
-        for API_KEY in API_KEYS:
+        for idx,API_KEY in enumerate(API_KEYS):
             params= {
                 'part': 'snippet',
                 'key': API_KEY,
@@ -102,15 +102,17 @@ def movie_detail(request,game_idx):
             youtube_result=res.json()
 
             # 유툽 API_KEY 할당량이 다 끝나서 더이상 검색해줄 수 없을 때, error 페이지로 넘어가기
-            if youtube_result.get('items',0)==0:
-                return render(request,'game/error.html')
-            
-            # 유툽에서 정상적으로 정보를 가져오면 그거 뿌려주기!
-            else:
+            if youtube_result.get('items',0)!=0:
                 print('youtube!')
                 youtube_id = youtube_result['items'][0].get('id')['videoId']
                 youtube = 'https://www.youtube.com/embed/'+str(youtube_id)+'?autoplay=1'
                 break
+
+            # 유툽에서 정상적으로 정보를 가져오면 그거 뿌려주기!
+            else:
+                if idx==len(API_KEYS)-1:
+                    print(idx,'아무대서도 받아오지 못했어요')
+                    return render(request,'game/error.html')
     
     # 댓글 가져오기
     comments = movie.moviecomment_set.all()
