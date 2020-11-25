@@ -57,8 +57,8 @@ def movie_detail(request,game_idx):
 
     # 예고편 가져오기
     URL = 'https://www.googleapis.com/youtube/v3/search'
-    API_KEY='AIzaSyCdneHhIhINFW9826nIXk0OJVtSnCq_aI8'
-    # API_KEY='AIzaSyClauhHokVFylfo5bKnc80LTnNuurpC1O8'
+    # API_KEY='AIzaSyCdneHhIhINFW9826nIXk0OJVtSnCq_aI8'
+    API_KEY='AIzaSyClauhHokVFylfo5bKnc80LTnNuurpC1O8'
     params= {
           'part': 'snippet',
           'key': API_KEY,

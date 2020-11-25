@@ -58,11 +58,13 @@ movie detail
         <p><b>댓글이 없어요..</b></p>
       {% endfor %}
       <hr>
-      <div style="display:inline">
-        <form action="{% url 'game:create_comment' movie.pk %}" method="POST">
-          {% csrf_token %}
-          {{ comment_form }}
-          <button class="btn-2">댓글 작성</button>
+      <div class="container row">
+        <div class="for-display col-10">
+          <form action="{% url 'game:create_comment' movie.pk %}" method="POST">
+            {% csrf_token %}
+            {{ comment_form }}
+          </div>
+          <button class="btn-2 button col-2">댓글 작성</button>
         </form>
       <div>
     </div>
@@ -71,8 +73,10 @@ movie detail
 {% endblock content %}
 
 {% block script %}
-<script>
 
+
+<script>
+  
   const likeBtnForm = document.querySelector('#form_like')
   const movieId =likeBtnForm.dataset.movieid
   console.log(likeBtnForm.dataset)
