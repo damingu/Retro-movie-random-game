@@ -61,10 +61,12 @@ def movie_detail(request,game_idx):
     tempmovie = get_object_or_404(TempMovie,poster_idx=game_idx)
     movie_pk = tempmovie.movie_id
     movie = get_object_or_404(Movie,pk=movie_pk)
+    # youtube API_KEY
     API_KEYS=[
         'AIzaSyCa5YwT7EcLVanemRFiNHhpyVy64sKu7Dw',
         'AIzaSyClauhHokVFylfo5bKnc80LTnNuurpC1O8',
-        'AIzaSyCdneHhIhINFW9826nIXk0OJVtSnCq_aI8'
+        'AIzaSyCdneHhIhINFW9826nIXk0OJVtSnCq_aI8',
+        'AIzaSyDthd4UCpNEiZIDddiTZZNQjxDlfsLHvc8',
     ]
    
     ## 예고편 가져오기1 TMDB에서!!

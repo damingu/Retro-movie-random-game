@@ -3,6 +3,7 @@
 
  body {
 	 font-weight: 100;
+	 font-family: 'Sunflower' !important ;
 }
  input ::-webkit-input-placeholder {
 	 color: #005479;
@@ -166,12 +167,12 @@ p {
 }
 
 .main-header {
-    background-color: rgba(22,34,57,0.95);
-    height: 80px;
-    position: fixed;
-    z-index: 12;
-    width: 100%;
-    top: 0;
+	background-color: #033c59;
+	height: 80px;
+	position: fixed;
+	z-index: 12;
+	width: 100%;
+	top: 0;
 }
 
 .main-header .logo {
@@ -220,7 +221,7 @@ p {
 
 .main-menu li.has-submenu a:after {
     content: '\f107';
-    font-family: "FontAwesome";
+		font-family: "FontAwesome";
     margin-left: 5px;
 }
 

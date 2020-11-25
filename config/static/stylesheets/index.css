@@ -2,3 +2,65 @@ h1{
   color: white;
 }
 
+.my-container{
+  text-align: center;
+  width: 1080px; 
+  height: 850px;
+  padding: 100px 0px;
+  background-color: none;
+ 
+}
+
+.login-form1{
+  position: relative;
+
+}
+
+.play-img{
+  width: 350px;
+  height: 500px;
+  display: inline-block;
+  text-align: center;
+  margin: 60px;
+  box-shadow: 0 0 0 0.5rem #f5a302;
+  
+}
+
+/* 시작 버튼 */
+
+button{
+  background:#0c1e34 ; 
+  color:#f5a302;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+button:hover{
+  background: #f5a302;
+  color: #0c1e34 ;
+}
+button:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #ffd35c;
+  transition:200ms ease all;
+}
+button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+button:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
