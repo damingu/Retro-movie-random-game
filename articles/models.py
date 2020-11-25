@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 import game.models as game_models
+from django.core.validators import MinValueValidator, MaxValueValidator
+
 
 # Create your models here.
 class Article(models.Model):
@@ -11,8 +13,8 @@ class Article(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    rating = models.IntegerField()
-
+    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    
     def __str__(self):
         return self.title
 
