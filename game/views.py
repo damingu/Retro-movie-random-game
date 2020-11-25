@@ -28,8 +28,7 @@ def index(request):
     }
     return render(request,'game/index.html',context)
 
-# 이렇게 선언 했는데 
- 
+
 # 게임 페이지로 넘어가는 함수 
 def play_game(request):
     tempmovieall = TempMovie.objects.all()
@@ -52,10 +51,6 @@ def play_game(request):
 
 # 예고편 보러가기
 def movie_detail(request,game_idx):
-    # 넘어온 movie_pk가 위에 total의 인덱스로 사용되서 value값을 끄집어내여함 
-    # # 근데 total 부분이 저장이 안돼!!왜!!
-    print('게임인덱스 :', game_idx)
-    # print('게임인덱스+1 :', game_idx+1)
     tempmovie = get_object_or_404(TempMovie,poster_idx=game_idx)
     movie_pk = tempmovie.movie_id
     movie = get_object_or_404(Movie,pk=movie_pk)

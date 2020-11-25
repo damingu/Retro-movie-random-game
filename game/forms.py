@@ -4,7 +4,7 @@ from .models import Movie,MovieComment
 class CommentForm(forms.ModelForm):
     
     content = forms.CharField(
-        label = 'Content',
+        # label = 'Content',
         widget=forms.TextInput(
             attrs={
                 'class':"my-content form-control",

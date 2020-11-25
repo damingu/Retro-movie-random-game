@@ -40,7 +40,7 @@ $(function(){
 		const MOVIE_URL = `/${RandomInt}/`
 		console.log(RandomInt)
 		// 여기 주석 풀기 
-		// window.setTimeout(function() {window.location.href = `/${RandomInt}/`}, 3000);
+		window.setTimeout(function() {window.location.href = `/${RandomInt}/`}, 3000);
 	
 	
     
