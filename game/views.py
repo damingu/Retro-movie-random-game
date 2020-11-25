@@ -10,7 +10,8 @@ import requests
 from bs4 import BeautifulSoup
 
 from django.http import JsonResponse
-
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_http_methods,require_POST,require_GET
 
 # 게임
 import random 
@@ -18,7 +19,11 @@ import random
 
 # Create your views here.
 def gameadmin(request):
-    return render(request,'game/gameadmin.html')
+    if request.user.is_staff:
+        return render(request,'game/gameadmin.html')
+    else:
+        return render(request,'game/index.html')
+
 
 def index(request):
     movies = Movie.objects.all()
@@ -30,6 +35,7 @@ def index(request):
 
 
 # 게임 페이지로 넘어가는 함수 
+@login_required
 def play_game(request):
     tempmovieall = TempMovie.objects.all()
     tempmovieall.delete()
@@ -50,28 +56,64 @@ def play_game(request):
 
 
 # 예고편 보러가기
+@login_required
 def movie_detail(request,game_idx):
     tempmovie = get_object_or_404(TempMovie,poster_idx=game_idx)
     movie_pk = tempmovie.movie_id
     movie = get_object_or_404(Movie,pk=movie_pk)
+    API_KEYS=[
+        'AIzaSyCa5YwT7EcLVanemRFiNHhpyVy64sKu7Dw',
+        'AIzaSyClauhHokVFylfo5bKnc80LTnNuurpC1O8',
+        'AIzaSyCdneHhIhINFW9826nIXk0OJVtSnCq_aI8'
+    ]
+   
+    ## 예고편 가져오기1 TMDB에서!!
+    
+    # TMDB에서 영화 ID 찾기
+    API_KEY = 'be806e5cce014657ffa0b51002fc8512'
+    url = 'https://api.themoviedb.org/3/search/movie?api_key='+API_KEY+'&language=ko-KR&query='+movie.title+'&page=1&include_adult=false'
+    res = requests.get(url)
+    # movie_dict안에 영화 아이디가 있어요.
+    movie_dict = res.json()
+    movie_id = (movie_dict.get('results')[0].get('id'))
 
-    # 예고편 가져오기
-    URL = 'https://www.googleapis.com/youtube/v3/search'
-    # API_KEY='AIzaSyCdneHhIhINFW9826nIXk0OJVtSnCq_aI8'
-    API_KEY='AIzaSyClauhHokVFylfo5bKnc80LTnNuurpC1O8'
-    params= {
-          'part': 'snippet',
-          'key': API_KEY,
-          'q': movie.title +' 예고편',
-        }
-    res = requests.get(URL, params=params)
-    youtube_result=res.json()
-    youtube_id = youtube_result['items'][0].get('id')['videoId']
-    youtube = 'https://www.youtube.com/embed/'+str(youtube_id)+'?autoplay=1'
+    # TMDB에서 영화 ID 기반으로 예고편 YOUTUBE ID 찾기
+    url = 'https://api.themoviedb.org/3/movie/'+str(movie_id)+'/videos?api_key='+API_KEY+'&language=ko-KR'
+    res = requests.get(url)
+    movie_detail = res.json()
+    if len(movie_detail.get('results')):
+        youtube_id = movie_detail.get('results')[0].get('key')
+        youtube = 'https://www.youtube.com/embed/'+str(youtube_id)+'?autoplay=1'
+        print('tmdb')
+    
+    ## 예고편 가져오기1 YOUTUBE에서!!
+    else:
+        # TMDB에 영화 예고편 YOUTUBE ID 정보가 없다면 유투브에서 직접 검색해보기
+        URL = 'https://www.googleapis.com/youtube/v3/search'
+        for API_KEY in API_KEYS:
+            params= {
+                'part': 'snippet',
+                'key': API_KEY,
+                'q': movie.title +' 예고편',
+            }
+            res = requests.get(URL, params=params)
+            youtube_result=res.json()
+
+            # 유툽 API_KEY 할당량이 다 끝나서 더이상 검색해줄 수 없을 때, error 페이지로 넘어가기
+            if youtube_result.get('items',0)==0:
+                return render(request,'game/error.html')
+            
+            # 유툽에서 정상적으로 정보를 가져오면 그거 뿌려주기!
+            else:
+                print('youtube!')
+                youtube_id = youtube_result['items'][0].get('id')['videoId']
+                youtube = 'https://www.youtube.com/embed/'+str(youtube_id)+'?autoplay=1'
+                break
     
     # 댓글 가져오기
     comments = movie.moviecomment_set.all()
     comment_form = CommentForm()
+
     context = {
         'youtube':youtube,
         'movie':movie,
@@ -83,6 +125,7 @@ def movie_detail(request,game_idx):
 
 
 # # 영화 찜하기
+@require_POST
 def like(request, movie_pk):
     if request.user.is_authenticated:
         movie = get_object_or_404(Movie,pk=movie_pk)
@@ -105,6 +148,7 @@ def like(request, movie_pk):
 
 
 # 영화 댓글 쓰기
+@require_POST
 def create_comment(request, poster_idx):
     tempmovie = get_object_or_404(TempMovie,poster_idx=poster_idx)
     movie_pk = tempmovie.movie_id
@@ -136,7 +180,7 @@ def my_movie_list(request):
     }
     return render(request,'game/my_movie_list.html',context)
 
-
+@require_POST
 def update_movie(request):
 
     # movie_list : 네이버 평점 순 500개 영화 제목 저장할 리스트!

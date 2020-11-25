@@ -29,7 +29,8 @@ a:hover {
   border: 0px solid #0c1e34 !important;
 }
 .menu_list{
-  width: 100%;
+  margin: auto;
+  padding: 0.5rem;
 }
 .slide-card-color{
   background:#0c1e34;
@@ -37,7 +38,8 @@ a:hover {
 }
 
 .custom-btn {
-  width: 5px;
+  display: inline-block;
+  width: 16px;
   border: 1px solid;
   background: #005479;
   color: #f5a302;

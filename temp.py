@@ -1,7 +1,14 @@
-a={'a':1,'b':5,'c':4}
-a=sorted(a.items(),reverse=True,key=lambda item: item[1])
-print(a)
-
+import datetime
+now = datetime.datetime.now()
+testtime = datetime.datetime.strptime('1995-04-23','%Y-%m-%d')
+test={
+    'name':'ss',
+    'time':testtime
+}
+print(type(now))
+print(test.get('time'))
+if now - test.get('time') <0:
+    print(test.name)
 # import json
 # data=open('movies.json',encoding='cp949')
 # movie_info = json.load(data)

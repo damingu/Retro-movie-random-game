@@ -1,8 +1,12 @@
+h1{
+  color:#ffd35c
+}
+
 .article{
   background: #ffba41;
   margin: auto;
   padding: 0.5rem;
-  margin-top: 5rem;
+  margin-top: 1rem;
 }
 .article-header{
   height: 50px;
