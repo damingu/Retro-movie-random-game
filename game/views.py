@@ -61,10 +61,12 @@ def movie_detail(request,game_idx):
     tempmovie = get_object_or_404(TempMovie,poster_idx=game_idx)
     movie_pk = tempmovie.movie_id
     movie = get_object_or_404(Movie,pk=movie_pk)
+    # youtube API_KEY
     API_KEYS=[
         'AIzaSyCa5YwT7EcLVanemRFiNHhpyVy64sKu7Dw',
         'AIzaSyClauhHokVFylfo5bKnc80LTnNuurpC1O8',
-        'AIzaSyCdneHhIhINFW9826nIXk0OJVtSnCq_aI8'
+        'AIzaSyCdneHhIhINFW9826nIXk0OJVtSnCq_aI8',
+        'AIzaSyDthd4UCpNEiZIDddiTZZNQjxDlfsLHvc8',
     ]
    
     ## 예고편 가져오기1 TMDB에서!!
@@ -77,23 +79,6 @@ def movie_detail(request,game_idx):
     movie_dict = res.json()
     movie_id = (movie_dict.get('results')[0].get('id'))
 
-<<<<<<< HEAD
-    # 예고편 가져오기
-    URL = 'https://www.googleapis.com/youtube/v3/search'
-    # API_KEY='AIzaSyCdneHhIhINFW9826nIXk0OJVtSnCq_aI8'
-    # API_KEY='AIzaSyClauhHokVFylfo5bKnc80LTnNuurpC1O8'
-    API_KEY='AIzaSyDthd4UCpNEiZIDddiTZZNQjxDlfsLHvc8'
-
-    params= {
-          'part': 'snippet',
-          'key': API_KEY,
-          'q': movie.title +' 예고편',
-        }
-    res = requests.get(URL, params=params)
-    youtube_result=res.json()
-    youtube_id = youtube_result['items'][0].get('id')['videoId']
-    youtube = 'https://www.youtube.com/embed/'+str(youtube_id)+'?autoplay=1'
-=======
     # TMDB에서 영화 ID 기반으로 예고편 YOUTUBE ID 찾기
     url = 'https://api.themoviedb.org/3/movie/'+str(movie_id)+'/videos?api_key='+API_KEY+'&language=ko-KR'
     res = requests.get(url)
@@ -126,7 +111,6 @@ def movie_detail(request,game_idx):
                 youtube_id = youtube_result['items'][0].get('id')['videoId']
                 youtube = 'https://www.youtube.com/embed/'+str(youtube_id)+'?autoplay=1'
                 break
->>>>>>> 6b89f37e8361c15c529225f199aa56c4781d0b05
     
     # 댓글 가져오기
     comments = movie.moviecomment_set.all()
