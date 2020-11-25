@@ -11,7 +11,7 @@ login
 {% endblock %}
 
 {% block content %}
-<div style="margin-top:250px;">
+<div style="margin-top:8rem;">
   <form action="" method="POST"  class="login-form">
     <p class="login-text">
       <span class="fa-stack fa-lg">
@@ -23,8 +23,14 @@ login
     {{ form.as_p }}
     <button class="login-submit">Login</button>
     <hr>
-    <a href="/accounts/login/">장고 제공 로그인</a>
-  
+    <div>
+      <div style="width:10%">
+        <img src="https://t1.daumcdn.net/cfile/tistory/990F274A5C15AA3238" alt="">
+      </div>
+      <div>
+      </div>
+    </div>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQb93sjSI5hrWVQzD3NoQ1fU3M3xQtWPKACw&usqp=CAU" alt="">
     <a href="{% provider_login_url 'google'%}" >구글 로그인</a><br>
     <a href="{% provider_login_url 'naver' %}" >네이버 로그인</a><br>
   </form>

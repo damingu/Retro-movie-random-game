@@ -77,6 +77,7 @@ def movie_detail(request,game_idx):
         'movie':movie,
         'comment_form': comment_form,
         'comments': comments,
+        'poster_idx': tempmovie.poster_idx
     }
     return render(request,'game/movie_detail.html',context)
 
@@ -104,15 +105,18 @@ def like(request, movie_pk):
 
 
 # 영화 댓글 쓰기
-def create_comment(request, movie_pk):
-    movie = get_object_or_404(Movie, pk=movie_pk)
+def create_comment(request, poster_idx):
+    tempmovie = get_object_or_404(TempMovie,poster_idx=poster_idx)
+    movie_pk = tempmovie.movie_id
+    movie = get_object_or_404(Movie,pk=movie_pk)
+
     comment_form = CommentForm(request.POST)
     if comment_form.is_valid():
         comment = comment_form.save(commit=False)
         comment.movie = movie
         comment.user = request.user
         comment.save()
-        return redirect('game:movie_detail', movie.pk)
+        return redirect('game:movie_detail', poster_idx)
     context = {
         'comment_form': comment_form,
         'review': movie,
@@ -126,7 +130,6 @@ def my_movie_list(request):
     user = request.user
     movies=user.like_movies.all()
     # writen_articles = get_object_or_404(articles_models.Article,pk=user.id)
-
 
     context={
         'movies':movies

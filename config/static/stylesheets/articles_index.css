@@ -37,6 +37,7 @@ a:hover {
 }
 
 .custom-btn {
+  width: 5px;
   border: 1px solid;
   background: #005479;
   color: #f5a302;

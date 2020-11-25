@@ -27,7 +27,7 @@ class ArticleForm(forms.ModelForm):
         widget=forms.NumberInput(
             attrs={
                 'class':"article-form",
-                'placeholder':'0~5',
+                'placeholder':' 0~5 점수로 평점을 입력해주세요',
             }
         ),
         error_messages={
