@@ -143,7 +143,7 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 
-STATIC_ROOT = BASE_DIR / 'staticfiels'
+STATIC_ROOT = BASE_DIR / 'staticfiles' 
 
 #static
 STATIC_URL = '/static/'

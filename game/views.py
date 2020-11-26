@@ -64,10 +64,10 @@ def movie_detail(request,game_idx):
     # youtube API_KEY
     API_KEYS=[
         'AIzaSyBHMW3H4EmxroW7qAhTbVto52JrCnUHx1E'
-        # 'AIzaSyCa5YwT7EcLVanemRFiNHhpyVy64sKu7Dw',
-        # 'AIzaSyClauhHokVFylfo5bKnc80LTnNuurpC1O8',
-        # 'AIzaSyCdneHhIhINFW9826nIXk0OJVtSnCq_aI8',
-        # 'AIzaSyDthd4UCpNEiZIDddiTZZNQjxDlfsLHvc8',
+        'AIzaSyCa5YwT7EcLVanemRFiNHhpyVy64sKu7Dw',
+        'AIzaSyClauhHokVFylfo5bKnc80LTnNuurpC1O8',
+        'AIzaSyCdneHhIhINFW9826nIXk0OJVtSnCq_aI8',
+        'AIzaSyDthd4UCpNEiZIDddiTZZNQjxDlfsLHvc8',
     ]
    
     ## 예고편 가져오기1 TMDB에서!!
