@@ -34,13 +34,13 @@
 
 홈페이지에 들어가서 로그인과 회원가입일 진행한 후 랜덤으로 선택해 뽑아주는 게임을 실행 합니다.
 
-![homepage](README.assets/final_pjt홈페이지.png)
+![homepage](README.assets/final_pjt홈페이지.PNG)
 
 ### 로그인 
 
 소셜로그인 기능 구현으로 구글아디나 네이버 아이디로 로그인이 가능합니다. 
 
-![login](README.assets/final_pjt로그인.png)
+![login](README.assets/final_pjt로그인.PNG)
 
 
 
@@ -58,15 +58,15 @@
 
 선택은 오로지 사용자의 손가락에 의해 결정 됩니다. 
 
-![playgame](README.assets/final_pjt게임실행.png)
+![playgame](README.assets/final_pjt게임실행.PNG)
 
 또한 예고편을 보고 난 후 찜한 목록만 영화 후기를 작성할 수 있어 예고편이 얼마나 본편으로 구매 욕구를 이글어 내는지 효과를 볼 수 있습니다.
 
-![playscreen](README.assets/final_pjt실행장면.png)
+![playscreen](README.assets/final_pjt실행장면.PNG)
 
 영화에 대한 평가와 사용자들끼리 소통할 수 있는 커뮤니티 페이지도 주요 기능 중 하나입니다. 
 
-![community](README.assets/final_pjt커뮤니티.png)
+![community](README.assets/final_pjt커뮤니티.PNG)
 
 
 
